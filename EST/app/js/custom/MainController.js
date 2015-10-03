@@ -1,4 +1,5 @@
 var gs;
+
 app.controller('MainController', ['$scope', '$http', 'ESService', function ($scope, $http, $ess) {
     $scope.Title = "elasticsearch toolbox";
     $scope.indexInfo = {};

@@ -1,5 +1,10 @@
 ﻿var resultEditor, queryEditor;
-$(document).ready(function () {
+$(document).ready(function() {
+    initCustomWindowButtons();
+    $('.slider').slider({
+        full_width: true
+    }).slider('start');
+
     resultEditor = initCodeMirror("resultEditor");
     queryEditor = initCodeMirror("queryEditor");
     queryEditor.setValue(JSON.stringify({
@@ -20,9 +25,9 @@ $(document).ready(function () {
     }, null, 2));
     resultEditor.setOption("theme", "neat");
 });
-var app = angular.module("est", [], function ($provide) {
+var app = angular.module("est", [], function($provide) {
     // Prevent Angular from sniffing for the history API since it's not supported in packaged apps.
-    $provide.decorator('$window', function ($delegate) {
+    $provide.decorator('$window', function($delegate) {
         $delegate.history = null;
         return $delegate;
     });
@@ -30,10 +35,10 @@ var app = angular.module("est", [], function ($provide) {
 
 var loader = $('.progress');
 $.ajaxSetup({
-    beforeSend: function () {
+    beforeSend: function() {
         loader.show();
     },
-    complete: function () {
+    complete: function() {
         loader.hide();
     }
 });
@@ -48,11 +53,27 @@ function initCodeMirror(element) {
         lineWrapping: true
     });
 }
-String.format = function () {
+String.format = function() {
     var s = arguments[0];
     for (var i = 0; i < arguments.length - 1; i++) {
         var reg = new RegExp("\\{" + i + "\\}", "gm");
         s = s.replace(reg, arguments[i + 1]);
     }
     return s;
+}
+
+function initCustomWindowButtons() {
+    document.getElementById("close-window-button").onclick = function() {
+        window.close();
+    };
+    document.getElementById("max-window-button").onclick = function() {
+        if (chrome.app.window.current().isMaximized())
+            chrome.app.window.current().restore();
+        else
+            chrome.app.window.current().maximize();
+
+    };
+    document.getElementById("min-window-button").onclick = function() {
+        chrome.app.window.current().minimize();
+    };
 }

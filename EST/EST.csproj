@@ -46,13 +46,10 @@
     <Content Include="app\background.js" />
     <Content Include="app\css\codemirror.css" />
     <Content Include="app\css\custom.css" />
-    <Content Include="app\css\material-design-iconic-font.css" />
-    <Content Include="app\css\material-design-iconic-font.min.css" />
     <Content Include="app\css\materialize.css" />
     <Content Include="app\css\materialize.min.css" />
     <Content Include="app\css\neat.css" />
     <Content Include="app\est.png" />
-    <Content Include="app\fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="app\font\material-design-icons\LICENSE.txt" />
     <Content Include="app\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="app\images\index.png" />
@@ -67,7 +64,7 @@
     <Content Include="app\js\cm\javascript.js" />
     <Content Include="app\js\cm\matchbrackets.js" />
     <Content Include="app\js\custom\ESService.js" />
-    <Content Include="app\js\custom\main.js" />
+    <Content Include="app\js\custom\Plugin.js" />
     <Content Include="app\js\custom\MainController.js" />
     <Content Include="app\js\jquery-2.1.4.min.js" />
     <Content Include="app\js\materialize.js" />
@@ -117,10 +114,6 @@
     <Content Include="app\font\roboto\Roboto-Thin.ttf" />
     <Content Include="app\font\roboto\Roboto-Thin.woff" />
     <Content Include="app\font\roboto\Roboto-Thin.woff2" />
-    <Content Include="app\fonts\Material-Design-Iconic-Font.eot" />
-    <Content Include="app\fonts\Material-Design-Iconic-Font.ttf" />
-    <Content Include="app\fonts\Material-Design-Iconic-Font.woff" />
-    <Content Include="app\fonts\Material-Design-Iconic-Font.woff2" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
