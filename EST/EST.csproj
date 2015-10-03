@@ -69,10 +69,6 @@
     <Content Include="app\js\custom\ESService.js" />
     <Content Include="app\js\custom\main.js" />
     <Content Include="app\js\custom\MainController.js" />
-    <Content Include="app\js\es\elasticsearch.jquery.js" />
-    <Content Include="app\js\es\elasticsearch.jquery.min.js" />
-    <Content Include="app\js\es\elasticsearch.js" />
-    <Content Include="app\js\es\elasticsearch.min.js" />
     <Content Include="app\js\jquery-2.1.4.min.js" />
     <Content Include="app\js\materialize.js" />
     <Content Include="app\js\materialize.min.js" />
