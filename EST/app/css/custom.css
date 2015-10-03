@@ -1,7 +1,17 @@
     .light {
         font-weight: 300
     }
-    
+     .title-area {
+        -webkit-app-region: drag;
+        cursor:move;
+      }
+      .title-button {
+        cursor:pointer;
+        -webkit-app-region: no-drag;
+      }
+       #nav-mobile i.title-button{
+              padding: 0 14px;
+       }
     .CodeMirror {
         border: 1px solid #eee;
         height: auto;

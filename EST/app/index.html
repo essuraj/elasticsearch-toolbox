@@ -9,12 +9,7 @@
     <link href="css/codemirror.css" rel="stylesheet" />
     <link href="css/neat.css" rel="stylesheet" />
     <style>
-      .title-area {
-        -webkit-app-region: drag;
-      }
-      .title-button {
-        -webkit-app-region: no-drag;
-      }
+     
     </style>
 </head>
 
@@ -22,14 +17,14 @@
     <div ng-controller="MainController">
         <nav class="title-area">
             <div class="nav-wrapper">
-
+                <i class="left material-icon mdi-action-perm-data-setting" style="display:inline-block;margin:0 0 0 10px"></i>
                 <a href="#" class="left light" style="padding:0 10px;font-size:1.3rem">{{Title}}</a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <ul class="left">
                     <li>
                         <div class="input-field title-button" style="padding:0 5px;font-size:1.3rem">
                             <input id="search" ng-init="es.url='http://localhost:81'" placeholder="elasticsearch url" type="search" ng-model="es.url" style="margin:0">
                             <label for="search"><i class="mdi-editor-insert-link"></i></label>
-                            <i class="material-icons mdi-content-send" style="color:green" ng-click="connectToES(es.url)"></i>
+                            <i class="material-icons mdi-content-send" style="color:#000" ng-click="connectToES(es.url)"></i>
                         </div>
                     </li>
                 </ul>
