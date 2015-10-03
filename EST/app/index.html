@@ -58,8 +58,8 @@
     <div ng-controller="MainController">
         <nav class="title-area">
             <div class="nav-wrapper">
-                <a href="#modal1" class="left waves-effect title-button waves-light modal-trigger" style="display:inline-block;margin:0 0 0 10px">
-                    <i class="material-icon mdi-action-perm-data-setting"></i>
+                <a class="left title-button" style="display:inline-block;margin:0 0 0 10px">
+                    <i class="material-icon mdi-device-now-widgets"></i>
                 </a>
 
                 <a href="#" class="left light" style="padding:0 10px;font-size:1.3rem">{{Title}}</a>
@@ -74,16 +74,24 @@
                 </ul>
                 <ul id="nav-mobile" class="right">
                     <li>
-                        <a href="#help" class="modal-trigger no-padding"><i class="material-icons title-button mdi-communication-live-help "></i></a>
+                        <a href="#settings" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-action-settings "></i></a>
                     </li>
                     <li>
-                        <i class="material-icons title-button mdi-hardware-keyboard-arrow-down" id="min-window-button"></i>
+                        <a href="#help" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-live-help "></i></a>
                     </li>
                     <li>
-                        <i class="material-icons title-button mdi-navigation-fullscreen" id="max-window-button"></i>
+                        <a href="#about" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-quick-contacts-mail
+
+"></i></a>
                     </li>
                     <li>
-                        <i class="material-icons title-button mdi-content-clear" id="close-window-button"></i>
+                        <i class="material-icons title-button mdi-hardware-keyboard-arrow-down waves-effect" id="min-window-button"></i>
+                    </li>
+                    <li>
+                        <i class="material-icons title-button mdi-navigation-fullscreen waves-effect" id="max-window-button"></i>
+                    </li>
+                    <li>
+                        <i class="material-icons title-button mdi-content-clear waves-effect" id="close-window-button"></i>
                     </li>
                 </ul>
             </div>
@@ -224,8 +232,8 @@
 
                                 </div>
                             </div>
-                            <div id="test2" class="col s12">Test 2</div>
-                            <div id="test3" class="col s12">
+                            <div id="test2" class="row card-panel">Test 2</div>
+                            <div id="test3" class="row card-panel">
                                 <div class="">
                                     <p ng-repeat="prop in MappingProps">
                                         <input type="checkbox" class="fields" id="{{prop+$index}}" name="{{prop}}" />
@@ -234,7 +242,7 @@
                                 </div>
 
                             </div>
-                            <div id="test4" class="col s12">Test 4</div>
+                            <div id="test4" class="row card-panel">Test 4</div>
                         </div>
 
 
@@ -249,7 +257,7 @@
             </div>
 
             <!-- Modal Structure -->
-            <div id="modal1" class="modal modal-fixed-footer">
+            <div id="settings" class="modal modal-fixed-footer">
                 <div class="modal-content">
                     <h4>Settings</h4>
                     <label>Select you editor theme :</label>
@@ -302,6 +310,11 @@
                 </div>
             </div>
             <div id="help" class="modal modal-fixed-footer" style="height:200px">
+                <div class="modal-content center-align">
+                    <h2>COMMING SOON</h2>
+                </div>
+            </div>
+            <div id="about" class="modal modal-fixed-footer" style="height:200px">
                 <div class="modal-content center-align">
                     <p>Author as of now</p>
                     <h6>Suraj E.S.</h6>
