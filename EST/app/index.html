@@ -72,7 +72,7 @@
                         </div>
                     </li>
                 </ul>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <ul id="nav-mobile" class="right">
                     <li>
                         <a href="#help" class="modal-trigger"><i class="material-icons title-button mdi-communication-live-help "></i></a>
                     </li>
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div ng-show="isConnected">
-                <div class="row blue" style="padding: 10px;margin:0">
+                <div class="row z-depth-1 blue" style="padding: 10px;margin:0">
                     <a class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px;    position: absolute;" ng-click="execute(es)">
                         <i class="mdi-av-play-arrow"></i>
                     </a>
@@ -144,23 +144,24 @@
 
                     </div>
                 </div>
-                <div class="row" style="margin-top: -7px;">
+                <div class="row" style="margin-top: 10px;">
 
 
-                    <div class="col s12 card-panel">
+                    <div class="col s12">
 
 
                         <div class="row">
-                            <div class="col s12">
-                                <ul class="tabs">
+                            <div class="">
+
+                                <ul class="row tabs">
                                     <li class="tab col s3"><a class="active" href="#test1">Build query</a></li>
                                     <li class="tab col s3"><a href="#test2">Aggregations</a></li>
                                     <li class="tab col s3"><a href="#test3">Fields to include</a></li>
                                     <li class="tab col s3"><a href="#test4">Misc</a></li>
                                 </ul>
                             </div>
-                            <div id="test1" class="col s12">
-                                <div class="col s6">
+                            <div id="test1" class="row card-panel">
+                                <div class="col s4">
                                     <p>
                                         My Result  {{esQ.condition}} match {{esQ.field}} with {{esQ.fieldValue}}
                                     </p>
@@ -191,7 +192,7 @@
                                     <button class="btn btn-block blue" ng-click="qfieldTemp.push(esQ);esQ={}">ADD</button>
                                     <br />
                                 </div>
-                                <div class="col s6">
+                                <div class="col s8">
                                     <p>Search for documents with the following conditions</p>
                                     <table class="responsive-table striped">
                                         <thead>
