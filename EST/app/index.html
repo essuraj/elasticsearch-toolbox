@@ -58,8 +58,8 @@
     <div ng-controller="MainController">
         <nav class="title-area">
             <div class="nav-wrapper">
-                <a href="#modal1" class="left waves-effect title-button waves-light  modal-trigger" style="display:inline-block;margin:0 0 0 10px">
-                    <i class=" material-icon mdi-action-perm-data-setting"></i>
+                <a href="#modal1" class="left waves-effect title-button waves-light modal-trigger" style="display:inline-block;margin:0 0 0 10px">
+                    <i class="material-icon mdi-action-perm-data-setting"></i>
                 </a>
 
                 <a href="#" class="left light" style="padding:0 10px;font-size:1.3rem">{{Title}}</a>
@@ -73,6 +73,9 @@
                     </li>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a href="#help" class="modal-trigger"><i class="material-icons title-button mdi-communication-live-help "></i></a>
+                    </li>
                     <li>
                         <i class="material-icons title-button mdi-hardware-keyboard-arrow-down" id="min-window-button"></i>
                     </li>
@@ -148,7 +151,7 @@
 
                         <li>
 
-                            <div class="collapsible-header active"><i class="mdi mdi-action-assignment"></i>mdQuery<</div>
+                            <div class="collapsible-header active"><i class="mdi mdi-action-assignment"></i>Query</div>
 
                             <div class="collapsible-body" style="max-height: 600px;overflow: auto;">
                                 <textarea id="queryEditor" ng-model="es.query"></textarea>
@@ -216,6 +219,12 @@
                 <div class="modal-footer">
                     <a href="#" class="btn waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
                     <a href="#" class="btn waves-effect waves-green btn-flat modal-action modal-close" ng-click="saveSettings(setting)">OK</a>
+                </div>
+            </div>
+            <div id="help" class="modal modal-fixed-footer" style="height:200px">
+                <div class="modal-content center-align">
+                    <p>Author as of now</p>
+                    <h6>Suraj E.S.</h6>
                 </div>
             </div>
         </div>

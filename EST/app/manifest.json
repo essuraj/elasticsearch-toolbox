@@ -12,8 +12,7 @@
       "128": "est.png"
   },
   "permissions": [
-    
-    "http://*.google.com/",
+
    "http://*/",
     "unlimitedStorage",
     "notifications"

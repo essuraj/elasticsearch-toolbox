@@ -44,7 +44,8 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
 
     };
     $scope.saveSettings = function (settings) {
-
+        resultEditor.setOption("theme", settings.theme);
+        queryEditor.setOption("theme", settings.theme);
 
     };
 }]);
