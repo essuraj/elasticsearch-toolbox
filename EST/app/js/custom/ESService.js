@@ -11,7 +11,7 @@ app.service('ESService', ['$http', function ($http) {
                 },
                 function (httpError) {
                     $('nav>div').removeClass("blue darken-3").addClass('red darken-4');
-
+                    gs.isConnected = false;
                     Materialize.toast('Unable to connect to elasticsearch', 3000, 'red');
                     throw httpError.status + " : " +
                         httpError.data;
