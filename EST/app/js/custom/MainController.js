@@ -4,6 +4,11 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
     $scope.Title = "elasticsearch toolbox";
     $scope.indexInfo = {};
     gs = $scope;
+    chrome.storage.sync.get("settings", function (result) {
+        console.log(result);
+        $scope.settings = result.settings;
+        $scope.$digest();
+    })
     $scope.connectToES = function (url) {
         Materialize.toast('Connecting to elasticsearch', 2000);
         $ess.getIndexes(url).then(function (stat) {
@@ -46,6 +51,9 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
     $scope.saveSettings = function (settings) {
         resultEditor.setOption("theme", settings.theme);
         queryEditor.setOption("theme", settings.theme);
-
+        if (settings)
+        chrome.storage.sync.set({ 'settings': settings }, function () {
+            Materialize.toast('Settings saved', 3000, 'green');
+        });
     };
 }]);

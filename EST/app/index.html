@@ -173,7 +173,7 @@
                 <div class="modal-content">
                     <h4>Settings</h4>
                     <label>Select you editor theme :</label>
-                    <select class="browser-default" ng-model="setting.theme" ng-change="selectTheme()" id="select">
+                    <select class="browser-default" ng-model="settings.theme">
                         <option value="default">default</option>
                         <option value="3024-day">3024-day</option>
                         <option value="3024-night">3024-night</option>
@@ -218,7 +218,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
-                    <a href="#" class="btn waves-effect waves-green btn-flat modal-action modal-close" ng-click="saveSettings(setting)">OK</a>
+                    <a href="#" class="btn waves-effect waves-green btn-flat modal-action modal-close" ng-click="saveSettings(settings)">OK</a>
                 </div>
             </div>
             <div id="help" class="modal modal-fixed-footer" style="height:200px">
