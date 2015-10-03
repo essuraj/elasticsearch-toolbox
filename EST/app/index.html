@@ -7,9 +7,50 @@
     <link href="css/materialize.min.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
     <link href="css/codemirror.css" rel="stylesheet" />
-    <link href="css/neat.css" rel="stylesheet" />
+
+
+    <link href="css/cmtheme/3024-day.css" rel="stylesheet" />
+    <link href="css/cmtheme/3024-night.css" rel="stylesheet" />
+    <link href="css/cmtheme/abcdef.css" rel="stylesheet" />
+    <link href="css/cmtheme/ambiance-mobile.css" rel="stylesheet" />
+    <link href="css/cmtheme/ambiance.css" rel="stylesheet" />
+    <link href="css/cmtheme/base16-dark.css" rel="stylesheet" />
+    <link href="css/cmtheme/base16-light.css" rel="stylesheet" />
+    <link href="css/cmtheme/blackboard.css" rel="stylesheet" />
+    <link href="css/cmtheme/cobalt.css" rel="stylesheet" />
+    <link href="css/cmtheme/colorforth.css" rel="stylesheet" />
+    <link href="css/cmtheme/dracula.css" rel="stylesheet" />
+    <link href="css/cmtheme/eclipse.css" rel="stylesheet" />
+    <link href="css/cmtheme/elegant.css" rel="stylesheet" />
+    <link href="css/cmtheme/erlang-dark.css" rel="stylesheet" />
+    <link href="css/cmtheme/icecoder.css" rel="stylesheet" />
+    <link href="css/cmtheme/lesser-dark.css" rel="stylesheet" />
+    <link href="css/cmtheme/liquibyte.css" rel="stylesheet" />
+    <link href="css/cmtheme/material.css" rel="stylesheet" />
+    <link href="css/cmtheme/mbo.css" rel="stylesheet" />
+    <link href="css/cmtheme/mdn-like.css" rel="stylesheet" />
+    <link href="css/cmtheme/midnight.css" rel="stylesheet" />
+    <link href="css/cmtheme/monokai.css" rel="stylesheet" />
+    <link href="css/cmtheme/neat.css" rel="stylesheet" />
+    <link href="css/cmtheme/neo.css" rel="stylesheet" />
+    <link href="css/cmtheme/night.css" rel="stylesheet" />
+    <link href="css/cmtheme/paraiso-dark.css" rel="stylesheet" />
+    <link href="css/cmtheme/paraiso-light.css" rel="stylesheet" />
+    <link href="css/cmtheme/pastel-on-dark.css" rel="stylesheet" />
+    <link href="css/cmtheme/rubyblue.css" rel="stylesheet" />
+    <link href="css/cmtheme/seti.css" rel="stylesheet" />
+    <link href="css/cmtheme/solarized.css" rel="stylesheet" />
+    <link href="css/cmtheme/the-matrix.css" rel="stylesheet" />
+    <link href="css/cmtheme/tomorrow-night-bright.css" rel="stylesheet" />
+    <link href="css/cmtheme/tomorrow-night-eighties.css" rel="stylesheet" />
+    <link href="css/cmtheme/ttcn.css" rel="stylesheet" />
+    <link href="css/cmtheme/twilight.css" rel="stylesheet" />
+    <link href="css/cmtheme/vibrant-ink.css" rel="stylesheet" />
+    <link href="css/cmtheme/xq-dark.css" rel="stylesheet" />
+    <link href="css/cmtheme/xq-light.css" rel="stylesheet" />
+    <link href="css/cmtheme/yeti.css" rel="stylesheet" />
+    <link href="css/cmtheme/zenburn.css" rel="stylesheet" />
     <style>
-     
     </style>
 </head>
 
@@ -17,7 +58,10 @@
     <div ng-controller="MainController">
         <nav class="title-area">
             <div class="nav-wrapper">
-                <i class="left material-icon mdi-action-perm-data-setting" style="display:inline-block;margin:0 0 0 10px"></i>
+                <a href="#modal1" class="left waves-effect title-button waves-light  modal-trigger" style="display:inline-block;margin:0 0 0 10px">
+                    <i class=" material-icon mdi-action-perm-data-setting"></i>
+                </a>
+
                 <a href="#" class="left light" style="padding:0 10px;font-size:1.3rem">{{Title}}</a>
                 <ul class="left">
                     <li>
@@ -30,7 +74,7 @@
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>
-                        <i class="material-icons title-button mdi-navigation-unfold-less" id="min-window-button"></i>
+                        <i class="material-icons title-button mdi-hardware-keyboard-arrow-down" id="min-window-button"></i>
                     </li>
                     <li>
                         <i class="material-icons title-button mdi-navigation-fullscreen" id="max-window-button"></i>
@@ -80,43 +124,104 @@
                 <div class="row blue" ng-show="isConnected" style="padding: 10px;">
                     <a class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px;    position: absolute;" ng-click="execute(es)">
                         <i class="mdi-av-play-arrow"></i>
-                      </a>                  
-                    <div class="col s3">
-                        <select style="height:35px" class="browser-default" ng-model="es.selectedIndex" ng-change="change(es)" ng-options="o as o for o in indexes">
-                            <option selected>FOUND INDICES</option>
-                        </select>
+                    </a>
+                    <div class="col s4">
+                        <div class="col s6">
+                            <select style="height:35px" class="browser-default" ng-model="es.selectedIndex" ng-change="change(es)" ng-options="o as o for o in indexes">
+                                <option selected>FOUND INDICES</option>
+                            </select>
+                        </div>
+                        <div class="col s6">
+                            <select style="height:35px" class="browser-default" ng-model="es.selectedMapping" ng-change="change(es)" ng-options="o as o for o in MappingList"></select>
+                        </div>
                     </div>
-                    <div class="col s9">
+                    <div class="col s8">
                         <!--  <h4 class="light"> {{indexInfo.total.docs.count|number}} documents in this index</h4> -->
                     </div>
                 </div>
-               
+
+            </div>
+
+            <div class="row" ng-show="isConnected">
+                <div class="col s12">
+                    <ul class="collapsible popout" data-collapsible="accordion">
+
+                        <li>
+
+                            <div class="collapsible-header active"><i class="mdi mdi-action-assignment"></i>mdQuery<</div>
+
+                            <div class="collapsible-body" style="max-height: 600px;overflow: auto;">
+                                <textarea id="queryEditor" ng-model="es.query"></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="mdi mdi-action-announcement"></i>Output</div>
+                            <div class="collapsible-body" style="max-height: 600px;overflow: auto;">
+                                <textarea id="resultEditor"></textarea>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-               
-                <div class="row" ng-show="isConnected">
-                    <div class="col s12">
-                        <ul class="collapsible popout" data-collapsible="accordion">
+            </div>
 
-                            <li>
 
-                                <div class="collapsible-header"><i class="mdi mdi-gradient"></i>Query</div>
-
-                                <div class="collapsible-body" style="max-height: 600px;overflow: auto;">
-                                    <textarea id="queryEditor" ng-model="es.query"></textarea>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="collapsible-header"><i class="mdi mdi-search"></i>Output</div>
-                                <div class="collapsible-body" style="max-height: 600px;overflow: auto;">
-                                    <textarea id="resultEditor"></textarea>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>Settings</h4>
+                    <label>Select you editor theme :</label>
+                    <select class="browser-default" ng-model="setting.theme" ng-change="selectTheme()" id="select">
+                        <option value="default">default</option>
+                        <option value="3024-day">3024-day</option>
+                        <option value="3024-night">3024-night</option>
+                        <option value="abcdef">abcdef</option>
+                        <option value="ambiance">ambiance</option>
+                        <option value="base16-dark">base16-dark</option>
+                        <option value="base16-light">base16-light</option>
+                        <option value="blackboard">blackboard</option>
+                        <option value="cobalt">cobalt</option>
+                        <option value="colorforth">colorforth</option>
+                        <option value="dracula">dracula</option>
+                        <option value="eclipse">eclipse</option>
+                        <option value="elegant">elegant</option>
+                        <option value="erlang-dark">erlang-dark</option>
+                        <option value="icecoder">icecoder</option>
+                        <option value="lesser-dark">lesser-dark</option>
+                        <option value="liquibyte">liquibyte</option>
+                        <option value="material">material</option>
+                        <option value="mbo">mbo</option>
+                        <option value="mdn-like">mdn-like</option>
+                        <option value="midnight">midnight</option>
+                        <option value="monokai">monokai</option>
+                        <option value="neat">neat</option>
+                        <option value="neo">neo</option>
+                        <option value="night">night</option>
+                        <option value="paraiso-dark">paraiso-dark</option>
+                        <option value="paraiso-light">paraiso-light</option>
+                        <option value="pastel-on-dark">pastel-on-dark</option>
+                        <option value="rubyblue">rubyblue</option>
+                        <option value="seti">seti</option>
+                        <option value="solarized dark">solarized dark</option>
+                        <option value="solarized light">solarized light</option>
+                        <option value="the-matrix">the-matrix</option>
+                        <option value="tomorrow-night-bright">tomorrow-night-bright</option>
+                        <option value="tomorrow-night-eighties">tomorrow-night-eighties</option>
+                        <option value="ttcn">ttcn</option>
+                        <option value="twilight">twilight</option>
+                        <option value="vibrant-ink">vibrant-ink</option>
+                        <option value="xq-dark">xq-dark</option>
+                        <option value="xq-light">xq-light</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
+                    <a href="#" class="btn waves-effect waves-green btn-flat modal-action modal-close" ng-click="saveSettings(setting)">OK</a>
                 </div>
             </div>
         </div>
+
     </div>
+
 
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/materialize.min.js"></script>
@@ -134,3 +239,42 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

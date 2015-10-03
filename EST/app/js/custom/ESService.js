@@ -22,7 +22,7 @@ app.service('ESService', ['$http', function ($http) {
             .then(
                 function (data) {
 
-                    return data;
+                    return data.data;
                 },
                 function (httpError) {
 
@@ -36,7 +36,7 @@ app.service('ESService', ['$http', function ($http) {
             .then(
                 function (data) {
                     console.log(data);
-                    return data;
+                    return data.data;
                 },
                 function (httpError) {
 

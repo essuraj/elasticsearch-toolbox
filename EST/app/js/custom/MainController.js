@@ -24,6 +24,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
             .then(function (response) {
                 console.log("Mappings", response);
                 $scope.Mappings = response;
+                $scope.MappingList = Object.keys((response[Object.keys(response)]).mappings);
             });
 
 
@@ -39,6 +40,10 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
                 resultEditor.setValue(JSON.stringify(response, null, 2));
             });
 
+
+
+    };
+    $scope.saveSettings = function (settings) {
 
 
     };
