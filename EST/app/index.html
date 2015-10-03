@@ -123,50 +123,100 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <div class="row blue" ng-show="isConnected" style="padding: 10px;">
+            <div ng-show="isConnected">
+                <div class="row blue" style="padding: 10px;margin:0">
                     <a class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px;    position: absolute;" ng-click="execute(es)">
                         <i class="mdi-av-play-arrow"></i>
                     </a>
                     <div class="col s4">
                         <div class="col s6">
-                            <select style="height:35px" class="browser-default" ng-model="es.selectedIndex" ng-change="change(es)" ng-options="o as o for o in indexes">
+                            <select style="height:35px" class="browser-default" ng-model="es.selectedIndex" ng-change="changeIndex(es)" ng-options="o as o for o in indexes">
                                 <option selected>FOUND INDICES</option>
                             </select>
                         </div>
                         <div class="col s6">
-                            <select style="height:35px" class="browser-default" ng-model="es.selectedMapping" ng-change="change(es)" ng-options="o as o for o in MappingList"></select>
+                            <select style="height:35px" class="browser-default" ng-model="es.selectedMapping" ng-change="changeMapping(es)" ng-options="o as o for o in MappingList"></select>
                         </div>
                     </div>
                     <div class="col s8">
-                        <!--  <h4 class="light"> {{indexInfo.total.docs.count|number}} documents in this index</h4> -->
+                        <button class="btn btn-flat blue text-white">Add </button>
                     </div>
                 </div>
+                <div class="row" style="margin-top: -7px;">
 
-            </div>
 
-            <div class="row" ng-show="isConnected">
-                <div class="col s12">
-                    <ul class="collapsible popout" data-collapsible="accordion">
+                    <div class="col s12 card-panel">
 
-                        <li>
+                       
+                            <div class="row">
+                                <div class="col s12">
+                                    <ul class="tabs">
+                                        <li class="tab col s3"><a class="active" href="#test1">Build query</a></li>
+                                        <li class="tab col s3"><a href="#test2">Aggregations</a></li>
+                                        <li class="tab col s3"><a href="#test3">Fields to include</a></li>
+                                        <li class="tab col s3"><a href="#test4">Misc</a></li>
+                                    </ul>
+                                </div>
+                                <div id="test1" class="col s12">
+                                    <div class="col s6">
+                                        <p>
+                                            My Result  {{esQ.condition}} match {{esQ.field}} with {{esQ.fieldValue}}
+                                        </p>
+                                        <select class="browser-default" ng-model="esQ.condition">
+                                            <option value="must">MUST HAVE</option>
+                                            <option value="must_not">MUST NOT HAVE</option>
+                                            <option value="should">SHOULD HAVE</option>
+                                        </select>
+                                        <br />
+                                        <select class="browser-default" ng-model="esQ.qType">
+                                            <option value="term">Term</option>
+                                            <option value="wildcard">Wildcard</option>
+                                            <option value="prefix">Prefix</option>
+                                            <option value="fuzzy">Fuzzy</option>
+                                            <option value="range">Range</option>
+                                            <option value="query_string">Query String</option>
+                                            <option value="text">Text</option>
+                                            <option value="missing">Missing</option>
+                                        </select>
+                                        <br />
+                                        <select class="browser-default" ng-model="esQ.field" ng-options="o as o for o in MappingProps"></select>
+                                        <br />
+                                        <div class="input-field">
+                                            <input id="field" type="text" class="validate" ng-model="esQ.fieldValue">
+                                            <label for="field">{{esQ.field}} value</label>
+                                        </div>
+                                        <br />
+                                        <button class="btn btn-block" ng-click="qfieldTemp.push(esQ);esQ={}">ADD</button>
+                                    </div>
+                                    <div class="col s6">
+                                        <p>Search for documents with the following conditions</p>
+                                        <p ng-repeat="fq in qfieldTemp track by $index">The Result {{fq.condition}} match {{fq.field}} with {{fq.fieldValue}}:</p>
 
-                            <div class="collapsible-header active"><i class="mdi mdi-action-assignment"></i>Query</div>
-
-                            <div class="collapsible-body" style="max-height: 600px;overflow: auto;">
-                                <textarea id="queryEditor" ng-model="es.query"></textarea>
+                                    </div>
+                                </div>
+                                <div id="test2" class="col s12">Test 2</div>
+                                <div id="test3" class="col s12">
+                                    <div class="">
+                                        <p ng-repeat="prop in MappingProps">
+                                            <input type="checkbox" class="fields" id="{{prop+$index}}" name="{{prop}}" />
+                                            <label for="{{prop+$index}}">{{prop}}</label>
+                                        </p>
+                                    </div>
+                                  
+                                </div>
+                                <div id="test4" class="col s12">Test 4</div>
                             </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="mdi mdi-action-announcement"></i>Output</div>
-                            <div class="collapsible-body" style="max-height: 600px;overflow: auto;">
-                                <textarea id="resultEditor"></textarea>
-                            </div>
-                        </li>
-                    </ul>
+
+                        
+
+                    </div>
+                    <div class="col s12">
+                        <h4>Query</h4>
+                        <textarea id="queryEditor" ng-model="es.query"></textarea>
+
+                    </div>
                 </div>
             </div>
-
 
             <!-- Modal Structure -->
             <div id="modal1" class="modal modal-fixed-footer">
@@ -225,6 +275,12 @@
                 <div class="modal-content center-align">
                     <p>Author as of now</p>
                     <h6>Suraj E.S.</h6>
+                </div>
+            </div>
+            <div id="result" class="modal">
+                <div class="modal-content">
+                    <h6>Result</h6>
+                    <textarea id="resultEditor"></textarea>
                 </div>
             </div>
         </div>

@@ -5,18 +5,16 @@ $(document).ready(function () {
         full_width: true
     }).slider('start');
     $('.modal-trigger').leanModal();
-    
+
     resultEditor = initCodeMirror("resultEditor");
     queryEditor = initCodeMirror("queryEditor");
     queryEditor.setValue(JSON.stringify({
         "query": {
             "bool": {
-                "must": [{
-                    "query_string": {
-                        "default_field": "_all",
-                        "query": "as"
-                    }
-                }],
+                "must": [
+{
+    "match_all": {}
+}],
                 "must_not": [],
                 "should": []
             }
