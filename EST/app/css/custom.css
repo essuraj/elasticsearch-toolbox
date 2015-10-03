@@ -16,7 +16,9 @@
         border: 1px solid #eee;
         height: auto;
     }
-    
+    body{
+            font-size: 14px;
+    }
     .hide {
         display: none;
     }
