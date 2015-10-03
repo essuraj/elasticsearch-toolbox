@@ -1,0 +1,28 @@
+    .light {
+        font-weight: 300
+    }
+    
+    .CodeMirror {
+        border: 1px solid #eee;
+        height: auto;
+    }
+    
+    .hide {
+        display: none;
+    }
+    
+    .btn-floating.btn-large i {
+        line-height: 56.5px;
+    }
+    
+    .btn-large i {
+        font-size: 2rem;
+    }
+    
+    nav,
+    nav .nav-wrapper i,
+    nav a.button-collapse,
+    nav a.button-collapse i {
+        height: 50px;
+        line-height: 50px;
+    }

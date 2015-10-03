@@ -1,0 +1,23 @@
+﻿{
+    "name": "Elastic Search Toolbox",
+    "description": "This tool helps you do wonders with Elatic Search",
+     "manifest_version": 2,
+    "version": "0.1",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": {
+      "128": "est.png"
+  },
+  "permissions": [
+    
+    "http://*.google.com/",
+   "http://*/",
+    "unlimitedStorage",
+    "notifications"
+  ],
+
+    "content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self'; unsafe-eval 'self'; object-src 'self';"
+}

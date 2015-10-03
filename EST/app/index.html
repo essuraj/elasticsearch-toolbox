@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>elasticsearch toolbox</title>
+    <meta charset="utf-8" />
+    <link href="css/materialize.min.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+    <link href="css/codemirror.css" rel="stylesheet" />
+    <link href="css/neat.css" rel="stylesheet" />
+    <style>
+
+    </style>
+</head>
+
+<body ng-app="est" style="background-color: #F1F1F1">
+    <div ng-controller="MainController">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo light" style="padding:0 10px;font-size:1.3rem">{{Title}}</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <div class="input-field" style="padding:0 5px;margin-bottom: 0;font-size:1.3rem">
+                            <input id="search" ng-init="es.url='http://localhost:81'" placeholder="elasticsearch url" type="search" required ng-model="es.url">
+                            <label for="search"><i class="zmdi zmdi-link"></i></label>
+                            <i class="material-icons zmdi zmdi-mail-send" ng-click="connectToES(es.url)"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="progress hide">
+            <div class="indeterminate"></div>
+        </div>
+        <div>
+            <div class="row red" ng-if="!isConnected" style="padding: 10px;">
+                <h2 class="light">Not connected to elasticsearch instance</h2>
+            </div>
+            <div class="row blue" ng-show="isConnected" style="padding: 10px;">
+                <a class="btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px;    position: absolute;" ng-click="execute(es)"><i class="zmdi zmdi-play"></i></a>
+                <div class="col s3">
+                    <select style="height:35px" class="browser-default" ng-model="es.selectedIndex" ng-change="change(es)" ng-options="o as o for o in indexes">
+                        <option selected>FOUND INDICES</option>
+                    </select>
+                </div>
+                <div class="col s9">
+                    <!--  <h4 class="light"> {{indexInfo.total.docs.count|number}} documents in this index</h4> -->
+                </div>
+            </div>
+            <div class="row" ng-show="isConnected">
+                <div class="col s12">
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="zmdi zmdi-gradient"></i>Query</div>
+                            <div class="collapsible-body" style="max-height: 600px;overflow: auto;">
+                                <textarea id="queryEditor" ng-model="es.query"></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="zmdi zmdi-search"></i>Output</div>
+                            <div class="collapsible-body" style="max-height: 600px;overflow: auto;">
+                                <textarea id="resultEditor"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <link href="css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <script src="js/materialize.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/cm/codemirror.js"></script>
+    <script src="js/cm/matchbrackets.js"></script>
+    <script src="js/cm/foldgutter.js"></script>
+    <script src="js/cm/foldcode.js"></script>
+    <script src="js/cm/javascript.js"></script>
+    <script src="js/cm/continuecomment.js"></script>
+    <script src="js/cm/comment.js"></script>
+    <script src="js/custom/main.js"></script>
+    <script src="js/custom/ESService.js"></script>
+    <script src="js/custom/MainController.js"></script>
+</body>
+
+</html>
