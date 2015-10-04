@@ -1,52 +1,80 @@
-    .light {
-        font-weight: 300
-    }
-     .title-area {
-        -webkit-app-region: drag;
-        cursor:move;
-      }
-      .title-button {
-        cursor:pointer;
-        -webkit-app-region: no-drag;
-      }
-       #nav-mobile i.title-button{
-              padding: 0 14px;
-       }
-    .CodeMirror {
-        border: 1px solid #eee;
-        height: auto;
-    }
-    body{
-            font-size: 14px;
-    }
-    .hide {
-        display: none;
-    }
-    
-    .btn-floating.btn-large i {
-        line-height: 56.5px;
-    }
-    
-    .btn-large i {
-        font-size: 2rem;
-    }
-    
-    nav,
-    nav .nav-wrapper i,
-    nav a.button-collapse,
-    nav a.button-collapse i {
-        height: 50px;
-        line-height: 50px;
-    }
-    .text-white{
-        color:white;
-    } .text-black{
-        color:black;
-    }
-      .modal-content .CodeMirror{
-          height: 95%;
+.light {
+    font-weight: 300
+}
 
-      }
-td, th {
+.title-area {
+    -webkit-app-region: drag;
+    cursor: move;
+}
+
+.title-button {
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+}
+
+#nav-mobile i.title-button {
+    padding: 0 14px;
+}
+
+.CodeMirror {
+    border: 1px solid #eee;
+    height: auto;
+}
+
+body {
+    font-size: 14px;
+}
+
+.hide {
+    display: none;
+}
+
+.btn-floating.btn-large i {
+    line-height: 56.5px;
+}
+
+.btn-large i {
+    font-size: 2rem;
+}
+
+nav,
+nav .nav-wrapper i,
+nav a.button-collapse,
+nav a.button-collapse i {
+     height: 30px;
+    line-height: 30px;font-size: 1.2rem
+}
+
+
+.text-white {
+    color: white;
+}
+
+.text-black {
+    color: black;
+}
+
+.modal-content .CodeMirror {
+    height: 95%;
+}
+
+td,
+th {
     padding: 5px;
+}
+
+select {
+    border: 1px solid #2FA0B9;
+    padding: 2px 5px;
+    height: 35px;
+}
+.input-field input[type=search] {
+   
+    padding-left: 2.3rem;
+    width: calc(100% - 2.3rem);
+}
+nav ul li:hover, nav ul li.active {
+    background-color: rgba(0, 0, 0, 0.28);
+} nav ul .windowButton:hover, nav ul .windowButton.active {
+    background-color: #980202;
 }

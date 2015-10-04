@@ -4,7 +4,8 @@
         frame: "none", state: "maximized",
         innerBounds: {
             width: 1280,
-            height: 700
+            height: 700,
+
         }
     });
 });
