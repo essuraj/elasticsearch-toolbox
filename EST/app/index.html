@@ -130,24 +130,26 @@
                         <div class="row">
                             <div class="">
                                 <ul class="row tabs">
-                                    <li class="tab col s3"><a class="active" href="#test1">Build query</a></li>
-                                    <li class="tab col s3"><a href="#test2">Aggregations</a></li>
-                                    <li class="tab col s3"><a href="#test3">Fields to include</a></li>
+                                    <li class="tab col s3"><a class="active" href="#qB">Build query</a></li>
+                                    <li class="tab col s3"><a href="#agg">Aggregations</a></li>
+                                    <li class="tab col s3"><a href="#fld">Fields to include</a></li>
                                     <li class="tab col s3"><a href="#test4">Misc</a></li>
                                 </ul>
                             </div>
-                            <div id="test1" class="row card-panel">
+                            <div id="qB" class="row card-panel">
                                 <div class="col s4">
                                     <p>
                                         My Result {{esQ.condition}} match {{esQ.field}} with {{esQ.fieldValue}}
                                     </p>
                                     <select class="browser-default" ng-model="esQ.condition">
+                                        <option value="">Select a condition type</option>
                                         <option value="must">MUST HAVE</option>
                                         <option value="must_not">MUST NOT HAVE</option>
                                         <option value="should">SHOULD HAVE</option>
                                     </select>
                                     <br />
                                     <select class="browser-default" ng-model="esQ.qType">
+                                        <option value="">Select a query type</option>
                                         <option value="term">Term</option>
                                         <option value="wildcard">Wildcard</option>
                                         <option value="prefix">Prefix</option>
@@ -158,14 +160,16 @@
                                         <option value="missing">Missing</option>
                                     </select>
                                     <br />
-                                    <select class="browser-default" ng-model="esQ.field" ng-options="o as o for o in MappingProps"></select>
+                                    <select class="browser-default" ng-model="esQ.field" ng-options="o as o for o in allMappings">
+                                        <option value="">Select a field</option>
+                                    </select>
                                     <br />
                                     <div class="input-field">
-                                        <input id="field" type="text" class="validate" ng-model="esQ.fieldValue">
+                                        <input id="field" type="text" class="validate" ng-model="esQ.fieldValue" placeholder="Enter a value to match">
                                         <label for="field">{{esQ.field||"Field"}} value</label>
                                     </div>
                                     <br />
-                                    <button class="btn btn-block blue" ng-click="qfieldTemp.push(esQ);esQ={}">ADD</button>
+                                    <button class="btn btn-block blue" ng-click="addToQuery(esQ)">ADD</button>
                                     <br />
                                 </div>
                                 <div class="col s8" style="max-height: 500px;overflow: auto;">
@@ -186,7 +190,7 @@
                                                 <td>{{fq.fieldValue}}</td>
                                                 <td>{{fq.qType}}</td>
                                                 <td>
-                                                    <a class="waves-effect waves-light btn red accent-4 " style="padding: 0 8px;" ng-click="qfieldTemp.splice($index,1)">
+                                                    <a class="waves-effect waves-light btn btn-flat " style="padding: 0 8px;" ng-click="qfieldTemp.splice($index,1)">
                                                         <i class="mdi-action-delete"></i>
                                                     </a>
                                                 </td>
@@ -195,13 +199,14 @@
                                     </table>
                                 </div>
                             </div>
-                            <div id="test2" class="row card-panel">Test 2</div>
-                            <div id="test3" class="row card-panel">
-                                <div class="">
-                                    <p ng-repeat="prop in MappingProps">
+                            <div id="agg" class="row card-panel">Test 2</div>
+                            <div id="fld" class="row card-panel">
+                                <div class="row">
+                                    <p>Select the fields that you want returned in the results ( Dont select any if you want them all )</p>
+                                    <div ng-repeat="prop in MappingProps" class="col s3">
                                         <input type="checkbox" class="fields" id="{{prop+$index}}" name="{{prop}}" />
                                         <label for="{{prop+$index}}">{{prop}}</label>
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
                             <div id="test4" class="row card-panel">Test 4</div>
@@ -220,7 +225,7 @@
                 </div>
                 <div class="modal-content">
                  
-                    <label>Select you editor theme :</label>
+                    <p>Select you editor theme :</p>
                     <select class="browser-default" ng-model="settings.theme">
                         <option value="default">default</option>
                         <option value="3024-day">3024-day</option>

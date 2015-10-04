@@ -13,8 +13,8 @@ app.service('ESService', ['$http', function ($http) {
                     $('nav>div').removeClass("blue darken-4").addClass('blue-grey darken-4');
                     gs.isConnected = false;
                     Materialize.toast('Unable to connect to elasticsearch', 3000, 'red');
-                    throw httpError.status + " : " +
-                        httpError.data;
+                    console.error("Error Data : ", httpError);
+                    throw httpError.status + " : " + httpError.data.error;
                 });
     };
     this.getMappings = function (url) {
@@ -25,9 +25,9 @@ app.service('ESService', ['$http', function ($http) {
                     return data.data;
                 },
                 function (httpError) {
-
-                    throw httpError.status + " : " +
-                        httpError.data;
+                    console.error("Error Data : ", httpError);
+                    Materialize.toast(httpError.data.error, 3000, 'red');
+                    throw httpError.status + " : " + httpError.data.error;
                 });
 
     };
@@ -39,10 +39,9 @@ app.service('ESService', ['$http', function ($http) {
                     return data.data;
                 },
                 function (httpError) {
-
-
-                    throw httpError.status + " : " +
-                        httpError.data;
+                    console.error("Error Data : ", httpError);
+                    Materialize.toast(httpError.data.error, 3000, 'red');
+                    throw httpError.status + " : " + httpError.data.error;
                 });
 
 

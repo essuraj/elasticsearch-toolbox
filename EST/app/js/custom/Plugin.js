@@ -26,8 +26,11 @@ $(document).ready(function() {
         "from": 0,
         "size": 10
     }, null, 2));
-    resultEditor.setOption("theme", "ambiance");
-    queryEditor.setOption("theme", "ambiance");
+ 
+    setTimeout(function () {
+        resultEditor.refresh();
+        queryEditor.refresh();
+    }, 1);
 });
 var app = angular.module("est", [], function($provide) {
     // Prevent Angular from sniffing for the history API since it's not supported in packaged apps.
