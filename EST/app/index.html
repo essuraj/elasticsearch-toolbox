@@ -58,7 +58,7 @@
 <body ng-app="est" style="background-color: #F1F1F1">
     <div ng-controller="MainController" id="appWindow">
         <nav class="title-area">
-            <div class="nav-wrapper red darken-4">
+            <div class="nav-wrapper blue-grey darken-4">
                
                 <a href="#" class="left light animated slideInDown" style="padding:0 5px;font-size:1.3rem"><i class="material-icon mdi-action-search left" style="margin-right:4px"></i>{{Title}}</a>
                 <ul class="left">
@@ -66,7 +66,7 @@
                         <div class="input-field title-button" style="padding:0 5px;font-size:1.3rem">
                             <input id="search" ng-init="es.url='http://localhost:81'" placeholder="elasticsearch url" type="search" ng-model="es.url" style="margin:0">
                             <label for="search"><i class="mdi-editor-insert-link"></i></label>
-                            <i class="material-icons mdi-content-send" style="color:#000;font-size: 1.2rem" ng-click="connectToES(es.url)"></i>
+                            <i class="material-icons mdi-content-send" style="color:#FF7D7D;font-size: 1.2rem" ng-click="connectToES(es.url)"></i>
                         </div>
                     </li>
                 </ul>
@@ -96,28 +96,11 @@
         
         <div>
             <div ng-if="!isConnected">
-                <div class="row red darken-4" style="padding: 10px;    margin: 0;">
+                <div class="row blue-grey darken-4" style="padding: 10px;margin: 0;">
                     <h3 class="light text-white">Not connected to an elasticsearch instance.</h3>
                 </div>
                 <div class="row">
-                    <div class="slider">
-                        <ul class="slides">
-                            <li>
-                                <img src="">
-                                <div class="caption center-align">
-                                    <h3>Welcome</h3>
-                                    <h5 class="light grey-text text-lighten-3">Query elasticsearch with ease</h5>
-                                </div>
-                            </li>
-                            <li>
-                                <!-- random image -->
-                                <div class="caption right-align">
-                                    <h3>Get started</h3>
-                                    <h5 class="light grey-text text-lighten-3">Add an elasticsearch url above here</h5>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                  
                 </div>
             </div>
             <div ng-show="isConnected" class="mainheight">

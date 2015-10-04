@@ -94,7 +94,6 @@
     <Content Include="app\est.png" />
     <Content Include="app\font\material-design-icons\LICENSE.txt" />
     <Content Include="app\font\material-design-icons\Material-Design-Icons.svg" />
-    <Content Include="app\images\index.png" />
     <Content Include="app\index.html" />
     <Content Include="app\js\angular.min.js" />
     <Content Include="app\js\cm\codemirror.js" />
@@ -164,7 +163,9 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="app\images\" />
+  </ItemGroup>
   <PropertyGroup>
     <LigerSharkChromeTargetsPath>$(BuildFolder)\ligershark.chrome.targets</LigerSharkChromeTargetsPath>
   </PropertyGroup>

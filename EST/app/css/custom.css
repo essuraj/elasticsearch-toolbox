@@ -13,7 +13,7 @@
 }
 
 #nav-mobile i.title-button {
-    padding: 0 14px;
+    padding: 0 10px;
 }
 
 .CodeMirror {
@@ -41,10 +41,10 @@ nav,
 nav .nav-wrapper i,
 nav a.button-collapse,
 nav a.button-collapse i {
-     height: 30px;
-    line-height: 30px;font-size: 1.2rem
+    height: 30px;
+    line-height: 30px;
+    font-size: 1.2rem
 }
-
 
 .text-white {
     color: white;
@@ -68,17 +68,22 @@ select {
     padding: 2px 5px;
     height: 35px;
 }
+
 .input-field input[type=search] {
-   
     padding-left: 2.3rem;
     width: calc(100% - 2.3rem);
 }
-nav ul li:hover, nav ul li.active {
+
+nav ul li:hover,
+nav ul li.active {
     background-color: rgba(0, 0, 0, 0.28);
-} nav ul .windowButton:hover, nav ul .windowButton.active {
+}
+
+nav ul .windowButton:hover,
+nav ul .windowButton.active {
     background-color: #980202;
 }
+
 .modal.modal-fixed-footer .modal-content {
-  
     height: auto;
 }
