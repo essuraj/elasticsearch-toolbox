@@ -4,6 +4,7 @@
 <head>
     <title>elasticsearch toolbox</title>
     <meta charset="utf-8" />
+    <link href="css/animate.css" rel="stylesheet" />
     <link href="css/materialize.min.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
     <link href="css/codemirror.css" rel="stylesheet" />
@@ -48,8 +49,9 @@
     <link href="css/cmtheme/xq-light.css" rel="stylesheet" />
     <link href="css/cmtheme/yeti.css" rel="stylesheet" />
     <link href="css/cmtheme/zenburn.css" rel="stylesheet" />
+    <script src="js/pace.min.js"></script>
+    <link href="css/dataurl.css" rel="stylesheet" />
     <style>
-
     </style>
 </head>
 
@@ -58,7 +60,7 @@
         <nav class="title-area">
             <div class="nav-wrapper red darken-4">
                
-                <a href="#" class="left light" style="padding:0 5px;font-size:1.3rem"><i class="material-icon mdi-action-search left" style="margin-right:4px"></i>{{Title}}</a>
+                <a href="#" class="left light animated slideInDown" style="padding:0 5px;font-size:1.3rem"><i class="material-icon mdi-action-search left" style="margin-right:4px"></i>{{Title}}</a>
                 <ul class="left">
                     <li>
                         <div class="input-field title-button" style="padding:0 5px;font-size:1.3rem">
@@ -68,7 +70,7 @@
                         </div>
                     </li>
                 </ul>
-                <ul id="nav-mobile" class="right">
+                <ul id="nav-mobile" class="right animated fadeInDown">
                     <li>
                         <a href="#settings" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-action-settings "></i></a>
                     </li>
@@ -76,9 +78,7 @@
                         <a href="#help" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-live-help "></i></a>
                     </li>
                     <li>
-                        <a href="#about" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-quick-contacts-mail
-
-"></i></a>
+                        <a href="#about" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-quick-contacts-mail"></i></a>
                     </li>
                     <li class="windowButton">
                         <i class="material-icons title-button mdi-hardware-keyboard-arrow-down waves-effect" id="min-window-button"></i>
@@ -92,9 +92,8 @@
                 </ul>
             </div>
         </nav>
-        <div class="progress hide">
-            <div class="indeterminate"></div>
-        </div>
+        <div id="pbar"></div>
+        
         <div>
             <div ng-if="!isConnected">
                 <div class="row red darken-4" style="padding: 10px;    margin: 0;">
@@ -123,17 +122,17 @@
             </div>
             <div ng-show="isConnected" class="mainheight">
                 <div class="row z-depth-1 blue darken-4" style="padding: 10px;margin:0">
-                    <a class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px;    position: absolute;" ng-click="execute(es)">
+                    <a class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px; position: absolute;" ng-click="execute(es)">
                         <i class="mdi-av-play-arrow"></i>
                     </a>
                     <div class="col s6">
                         <div class="col s6">
-                            <select style="height:35px" class="browser-default" ng-model="es.selectedIndex" ng-change="changeIndex(es)" ng-options="o as o for o in indexes">
+                            <select id="index" class="browser-default" ng-model="es.selectedIndex" ng-change="changeIndex(es)" ng-options="o as o for o in indexes">
                                 <option value="" selected>Select an index</option>
                             </select>
                         </div>
                         <div class="col s6">
-                            <select style="height:35px" class="browser-default" ng-model="es.selectedMapping" ng-change="changeMapping(es)" ng-options="o as o for o in MappingList">
+                            <select class="browser-default" ng-model="es.selectedMapping" ng-change="changeMapping(es)" ng-options="o as o for o in MappingList">
                                 <option value="" selected>Select an document type</option>
                             </select>
                         </div>
@@ -231,8 +230,11 @@
             </div>
             <!-- Modal Structure -->
             <div id="settings" class="modal modal-fixed-footer">
+                <div class="row deep-purple center-align">
+                    <h4 class="light text-white " style="padding:5px">Settings</h4>
+                </div>
                 <div class="modal-content">
-                    <h4>Settings</h4>
+                 
                     <label>Select you editor theme :</label>
                     <select class="browser-default" ng-model="settings.theme">
                         <option value="default">default</option>

@@ -11,7 +11,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
         $scope.$digest();
     })
     $scope.connectToES = function(url) {
-        Materialize.toast('Connecting to elasticsearch', 2000);
+        Materialize.toast('Connecting to elasticsearch', 1000);
         $ess.getIndexes(url).then(function(stat) {
             Materialize.toast('Connected to elasticsearch', 3000, 'green');
             $scope.indexes = Object.keys(stat.data.indices);
@@ -45,7 +45,13 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
 
     };
 
-    $scope.execute = function(es) {
+    $scope.execute = function (es) {
+        if (!es.selectedIndex)
+        {
+            Materialize.toast('Select an index', 3000, 'orange');
+            $('#index').removeClass('shake').removeClass('animated').addClass('shake').addClass('animated');
+            return;
+        }
         var query = $.parseJSON(queryEditor.getValue());
         var url = String.format("{0}/{1}/_search", es.url, es.selectedIndex);
         var jQfields = $('.fields:checked');

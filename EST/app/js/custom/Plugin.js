@@ -1,4 +1,9 @@
 ﻿var resultEditor, queryEditor;
+paceOptions = {
+    ajax: true,
+    document: true, 
+    eventLag: true    
+};
 $(document).ready(function() {
     initCustomWindowButtons();
     $('.slider').slider({
@@ -32,15 +37,6 @@ var app = angular.module("est", [], function($provide) {
     });
 });
 
-var loader = $('.progress');
-$.ajaxSetup({
-    beforeSend: function() {
-        loader.show();
-    },
-    complete: function() {
-        loader.hide();
-    }
-});
 
 
 function initCodeMirror(element) {

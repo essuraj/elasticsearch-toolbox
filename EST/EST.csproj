@@ -44,6 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app\background.js" />
+    <Content Include="app\css\animate.css" />
     <Content Include="app\css\cmtheme\3024-day.css" />
     <Content Include="app\css\cmtheme\3024-night.css" />
     <Content Include="app\css\cmtheme\abcdef.css" />
@@ -85,6 +86,7 @@
     <Content Include="app\css\cmtheme\zenburn.css" />
     <Content Include="app\css\codemirror.css" />
     <Content Include="app\css\custom.css" />
+    <Content Include="app\css\dataurl.css" />
     <Content Include="app\css\materialize.css" />
     <Content Include="app\css\materialize.min.css" />
     <Content Include="app\css\cmtheme\mdn-like.css" />
@@ -109,6 +111,7 @@
     <Content Include="app\js\jquery-2.1.4.min.js" />
     <Content Include="app\js\materialize.js" />
     <Content Include="app\js\materialize.min.js" />
+    <Content Include="app\js\pace.min.js" />
     <Content Include="Properties\build\lib\Ionic.Zip.DLL" />
     <Content Include="Properties\build\lib\MSBuild.ExtensionPack.dll" />
   </ItemGroup>

@@ -78,3 +78,7 @@ nav ul li:hover, nav ul li.active {
 } nav ul .windowButton:hover, nav ul .windowButton.active {
     background-color: #980202;
 }
+.modal.modal-fixed-footer .modal-content {
+  
+    height: auto;
+}
