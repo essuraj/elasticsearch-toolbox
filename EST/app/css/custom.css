@@ -1,7 +1,9 @@
 .light {
     font-weight: 300
 }
-
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 .title-area {
     -webkit-app-region: drag;
     cursor: move;

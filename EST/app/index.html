@@ -51,6 +51,8 @@
     <link href="css/cmtheme/zenburn.css" rel="stylesheet" />
     <script src="js/pace.min.js"></script>
     <link href="css/dataurl.css" rel="stylesheet" />
+    <script src="js/angular.min.js"></script>
+
     <style>
     </style>
 </head>
@@ -103,7 +105,7 @@
                   
                 </div>
             </div>
-            <div ng-show="isConnected" class="mainheight">
+            <div ng-show="isConnected" class="mainheight" ng-cloak>
                 <div class="row z-depth-1 blue darken-4" style="padding: 10px;margin:0">
                     <a class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px; position: absolute;" ng-click="execute(es)">
                         <i class="mdi-av-play-arrow"></i>
@@ -288,7 +290,6 @@
     </div>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/materialize.min.js"></script>
-    <script src="js/angular.min.js"></script>
     <script src="js/cm/codemirror.js"></script>
     <script src="js/cm/matchbrackets.js"></script>
     <script src="js/cm/foldgutter.js"></script>
