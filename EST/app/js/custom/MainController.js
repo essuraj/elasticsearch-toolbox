@@ -172,11 +172,14 @@ function GetQuery(queryParams) {
 }
 
 function QueryObjGenerator(type, field, value) {
-    var objStr = '{"' + type + '":{"' + field + '":"' + value + '"}}';
-   
-    console.log(objStr);
+    var objStr = "";
+    if (type == "query_string") {
+        objStr = '{"' + type + '":{"default_field":"' + field + '","query":"' + value + '"}}';
 
-    var json = $.parseJSON(objStr);
-    console.log(json);
+    } else {
+        objStr = '{"' + type + '":{"' + field + '":"' + value + '"}}';
+    }
+     var json = $.parseJSON(objStr);
+    console.log(type,json);
     return json;
 }
