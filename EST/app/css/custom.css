@@ -73,7 +73,7 @@ select {
 
 .input-field input[type=search] {
     padding-left: 2.3rem;
-    width: calc(100% - 2.3rem);
+    width: 300px;
 }
 
 nav ul li:hover,
