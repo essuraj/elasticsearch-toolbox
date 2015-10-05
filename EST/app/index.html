@@ -203,7 +203,7 @@
                             <div id="fld" class="row card-panel">
                                 <div class="row">
                                     <p>Select the fields that you want returned in the results ( Dont select any if you want them all )</p>
-                                    <div ng-repeat="prop in MappingProps" class="col s3">
+                                    <div ng-repeat="prop in allMappings" class="col s3">
                                         <input type="checkbox" class="fields" id="{{prop+$index}}" name="{{prop}}" />
                                         <label for="{{prop+$index}}">{{prop}}</label>
                                     </div>
