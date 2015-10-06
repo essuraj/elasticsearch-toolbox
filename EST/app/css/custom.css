@@ -89,3 +89,20 @@ nav ul .windowButton.active {
 .modal.modal-fixed-footer .modal-content {
     height: auto;
 }
+
+.top.tabs .indicator {
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    background-color: #FF4E4E;
+    will-change: left, right;
+}
+.top.tabs .tab a{
+    color: #fff;
+  }
+  .tab a .active{
+      font-weight: bold;
+    }
+#eQ .CodeMirror{
+  height: 70%;
+}

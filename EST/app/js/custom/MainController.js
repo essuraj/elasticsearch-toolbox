@@ -98,7 +98,9 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
                     resultEditor.refresh();
                     queryEditor.refresh();
                 }, 1);
-                $('#result').openModal();
+
+                  $('ul.tabs').tabs('select_tab', 'res');
+
             });
 
 
@@ -122,7 +124,7 @@ function BuildQuery(queryParams) {
     var queryTemplate = $.parseJSON(queryEditor.getValue());
 
 
-    //Adding selected fields 
+    //Adding selected fields
     var jQfields = $('.fields:checked');
     var fields = [];
     $.each(jQfields, function (k, field) {

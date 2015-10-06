@@ -1,8 +1,8 @@
 ﻿var resultEditor, queryEditor;
 paceOptions = {
     ajax: true,
-    document: true, 
-    eventLag: true    
+    document: true,
+    eventLag: true
 };
 $(document).ready(function() {
     initCustomWindowButtons();
@@ -26,11 +26,11 @@ $(document).ready(function() {
         "from": 0,
         "size": 10
     }, null, 2));
- 
+
     setTimeout(function () {
         resultEditor.refresh();
         queryEditor.refresh();
-    }, 1);
+    }, 100);
 });
 var app = angular.module("est", [], function($provide) {
     // Prevent Angular from sniffing for the history API since it's not supported in packaged apps.
@@ -45,7 +45,7 @@ var app = angular.module("est", [], function($provide) {
 function initCodeMirror(element) {
 
     return CodeMirror.fromTextArea(document.getElementById(element), {
-        matchBrackets: true,
+        matchBrackets: true,lineNumbers: true,
         autoCloseBrackets: true,
         mode: "application/ld+json",
         lineWrapping: true
