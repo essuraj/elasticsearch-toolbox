@@ -13,6 +13,7 @@ $(document).ready(function() {
 
     resultEditor = initCodeMirror("resultEditor");
     queryEditor = initCodeMirror("queryEditor");
+    resultEditor.setOption("readOnly", true)
     queryEditor.setValue(JSON.stringify({
         "query": {
             "bool": {
@@ -27,7 +28,7 @@ $(document).ready(function() {
         "size": 10
     }, null, 2));
 
-    setTimeout(function () {
+    setTimeout(function() {
         resultEditor.refresh();
         queryEditor.refresh();
     }, 100);
@@ -45,7 +46,8 @@ var app = angular.module("est", [], function($provide) {
 function initCodeMirror(element) {
 
     return CodeMirror.fromTextArea(document.getElementById(element), {
-        matchBrackets: true,lineNumbers: true,
+        matchBrackets: true,
+        lineNumbers: true,
         autoCloseBrackets: true,
         mode: "application/ld+json",
         lineWrapping: true

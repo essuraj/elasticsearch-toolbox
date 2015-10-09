@@ -52,8 +52,20 @@
     <script src="js/pace.min.js"></script>
     <link href="css/dataurl.css" rel="stylesheet" />
     <script src="js/angular.min.js"></script>
-
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/cm/codemirror.js"></script>
+    <script src="js/cm/matchbrackets.js"></script>
+    <script src="js/cm/foldgutter.js"></script>
+    <script src="js/cm/foldcode.js"></script>
+    <script src="js/cm/javascript.js"></script>
+    <script src="js/cm/continuecomment.js"></script>
+    <script src="js/cm/comment.js"></script>
+    <script src="js/custom/Plugin.js"></script>
+    <script src="js/custom/ESService.js"></script>
+    <script src="js/custom/MainController.js"></script>
     <style>
+
     </style>
 </head>
 
@@ -61,7 +73,6 @@
     <div ng-controller="MainController" id="appWindow">
         <nav class="title-area">
             <div class="nav-wrapper blue-grey darken-4">
-
                 <a href="#" class="left light animated slideInDown" style="padding:0 5px;font-size:1.3rem"><i class="material-icon mdi-action-search left" style="margin-right:4px"></i>{{Title}}</a>
                 <ul class="left">
                     <li>
@@ -85,29 +96,26 @@
                     <li class="windowButton">
                         <i class="material-icons title-button mdi-hardware-keyboard-arrow-down waves-effect" id="min-window-button"></i>
                     </li>
-                    <li  class="windowButton">
+                    <li class="windowButton">
                         <i class="material-icons title-button mdi-navigation-fullscreen waves-effect" id="max-window-button"></i>
                     </li>
-                    <li  class="windowButton">
+                    <li class="windowButton">
                         <i class="material-icons title-button mdi-content-clear waves-effect" id="close-window-button"></i>
                     </li>
                 </ul>
             </div>
         </nav>
         <div id="pbar"></div>
-
         <div>
             <div ng-if="!isConnected">
                 <div class="row blue-grey darken-4" style="padding: 10px;margin: 0;">
                     <h3 class="light text-white">Not connected to an elasticsearch instance.</h3>
                 </div>
                 <div class="row">
-
                 </div>
             </div>
             <div ng-show="isConnected" class="mainheight" ng-cloak>
                 <div class="row z-depth-1 blue darken-4" style="padding: 10px;margin:0">
-
                     <div class="col s6">
                         <div class="col s6">
                             <select id="index" class="browser-default" ng-model="es.selectedIndex" ng-change="changeIndex(es)" ng-options="o as o for o in indexes">
@@ -132,100 +140,100 @@
                     <li class="tab col s3"><a href="#res">Result</a></li>
                 </ul>
                 <div class="row" style="margin-top: -6px;">
-
-                                <div id="bQ" class="card-panel" style="padding: 5px">
-                                  <ul class="row tabs">
-                                      <li class="tab col s3"><a class="active" href="#qB">Query Builder</a></li>
-                                      <li class="tab col s3"><a href="#agg">Aggregations Builder</a></li>
-                                      <li class="tab col s3"><a href="#fld">Fields to include</a></li>
-                                      <li class="tab col s3"><a href="#test4">Misc</a></li>
-                                  </ul>
-                                  <div id="qB" class="row card-panel">
-                                      <div class="col s4">
-                                          <p>
-                                              My Result {{esQ.condition}} match {{esQ.field}} with {{esQ.fieldValue}}
-                                          </p>
-                                          <select class="browser-default" ng-model="esQ.condition">
-                                              <option value="">Select a condition type</option>
-                                              <option value="must">MUST HAVE</option>
-                                              <option value="must_not">MUST NOT HAVE</option>
-                                              <option value="should">SHOULD HAVE</option>
-                                          </select>
-                                          <br />
-                                          <select class="browser-default" ng-model="esQ.qType">
-                                              <option value="">Select a query type</option>
-                                              <option value="term">Term</option>
-                                              <option value="wildcard">Wildcard</option>
-                                              <option value="prefix">Prefix</option>
-                                              <option value="fuzzy">Fuzzy</option>
-                                              <option value="range">Range</option>
-                                              <option value="query_string">Query String</option>
-                                              <option value="text">Text</option>
-                                              <option value="missing">Missing</option>
-                                          </select>
-                                          <br />
-                                          <select class="browser-default" ng-model="esQ.field" ng-options="o as o for o in allMappings">
-                                              <option value="">Select a field</option>
-                                          </select>
-                                          <br />
-                                          <div class="input-field">
-                                              <input id="field" type="text" class="validate" ng-model="esQ.fieldValue" placeholder="Enter a value to match">
-                                              <label for="field">{{esQ.field||"Field"}} value</label>
-                                          </div>
-                                          <br />
-                                          <button class="btn btn-block blue" ng-click="addToQuery(esQ)">ADD</button>
-                                          <br />
-                                      </div>
-                                      <div class="col s8" style="max-height: 500px;overflow: auto;">
-                                          <p>Search for documents with the following conditions</p>
-                                          <table class="responsive-table striped">
-                                              <thead>
-                                                  <tr>
-                                                      <th data-field="condition">CONDITION</th>
-                                                      <th data-field="filed">FIELD</th>
-                                                      <th data-field="value">VALUE</th>
-                                                      <th data-field="type">TYPE</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr ng-repeat="fq in qfieldTemp track by $index">
-                                                      <td>{{fq.condition}}</td>
-                                                      <td>{{fq.field}}</td>
-                                                      <td>{{fq.fieldValue}}</td>
-                                                      <td>{{fq.qType}}</td>
-                                                      <td>
-                                                          <a class="waves-effect waves-light btn btn-flat " style="padding: 0 8px;" ng-click="qfieldTemp.splice($index,1)">
-                                                              <i class="mdi-action-delete"></i>
-                                                          </a>
-                                                      </td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-                                  <div id="agg" class="row card-panel">Test 2</div>
-                                  <div id="fld" class="row card-panel">
-                                      <div class="row">
-                                          <p>Select the fields that you want returned in the results ( Dont select any if you want them all )</p>
-                                          <div ng-repeat="prop in allMappings" class="col s3">
-                                              <input type="checkbox" class="fields" id="{{prop+$index}}" name="{{prop}}" />
-                                              <label for="{{prop+$index}}">{{prop}}</label>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div id="test4" class="row card-panel">Test 4</div>
+                    <div id="bQ" class="card-panel" style="padding: 5px">
+                        <ul class="row tabs">
+                            <li class="tab col s3"><a class="active" href="#qB">Query Builder</a></li>
+                            <li class="tab col s3"><a href="#agg">Aggregations Builder</a></li>
+                            <li class="tab col s3"><a href="#fld">Fields to include</a></li>
+                            <li class="tab col s3"><a href="#test4">Misc</a></li>
+                        </ul>
+                        <div id="qB" class="row card-panel heightFix">
+                            <div class="col s4">
+                                <p>
+                                    My Result {{esQ.condition}} match {{esQ.field}} with {{esQ.fieldValue}}
+                                </p>
+                                <select class="browser-default" ng-model="esQ.condition">
+                                    <option value="">Select a condition type</option>
+                                    <option value="must">MUST HAVE</option>
+                                    <option value="must_not">MUST NOT HAVE</option>
+                                    <option value="should">SHOULD HAVE</option>
+                                </select>
+                                <br />
+                                <select class="browser-default" ng-model="esQ.qType">
+                                    <option value="">Select a query type</option>
+                                    <option value="term">Term</option>
+                                    <option value="wildcard">Wildcard</option>
+                                    <option value="prefix">Prefix</option>
+                                    <option value="fuzzy">Fuzzy</option>
+                                    <option value="range">Range</option>
+                                    <option value="query_string">Query String</option>
+                                    <option value="text">Text</option>
+                                    <option value="missing">Missing</option>
+                                </select>
+                                <br />
+                                <select class="browser-default" ng-model="esQ.field" ng-options="o as o for o in allMappings">
+                                    <option value="">Select a field</option>
+                                </select>
+                                <br />
+                                <div class="input-field">
+                                    <input id="field" type="text" class="validate" ng-model="esQ.fieldValue" placeholder="Enter a value to match">
+                                    <label for="field">{{esQ.field||"Field"}} value</label>
                                 </div>
-                                <div id="eQ" class="row">
-                                  <div class="col s12">
-                                    <br/>
-                                      <textarea id="queryEditor"></textarea>
-                                  </div>
+                                <br />
+                                <button class="btn btn-block blue" ng-click="addToQuery(esQ)">ADD</button>
+                                <br />
+                            </div>
+                            <div class="col s8" style="max-height: 500px;overflow: auto;">
+                                <p>Search for documents with the following conditions</p>
+                                <table class="responsive-table striped">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="condition">CONDITION</th>
+                                            <th data-field="filed">FIELD</th>
+                                            <th data-field="value">VALUE</th>
+                                            <th data-field="type">TYPE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="fq in qfieldTemp track by $index">
+                                            <td>{{fq.condition}}</td>
+                                            <td>{{fq.field}}</td>
+                                            <td>{{fq.fieldValue}}</td>
+                                            <td>{{fq.qType}}</td>
+                                            <td>
+                                                <a class="waves-effect waves-light btn btn-flat " style="padding: 0 8px;" ng-click="qfieldTemp.splice($index,1)">
+                                                    <i class="mdi-action-delete"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="agg" class="row card-panel heightFix">Test 2</div>
+                        <div id="fld" class="row card-panel heightFix">
+                            <div class="row">
+                                <p>Select the fields that you want returned in the results ( Dont select any if you want them all )</p>
+                                <div ng-repeat="prop in allMappings" class="col s3">
+                                    <input type="checkbox" class="fields" id="{{prop+$index}}" name="{{prop}}" />
+                                    <label for="{{prop+$index}}">{{prop}}</label>
                                 </div>
-                                <div id="res" class="row card-panel">
-                                  <h6>Result</h6>
-                                  <textarea id="resultEditor"></textarea>
-                                </div>
-
+                            </div>
+                        </div>
+                        <div id="test4" class="row card-panel heightFix">Test 4</div>
+                    </div>
+                    <div id="eQ" class="row">
+                        <div class="col s12 heightFix">
+                            <br/>
+                            <textarea id="queryEditor"></textarea>
+                        </div>
+                    </div>
+                    <div id="res" class="row">
+                        <div class="col s12 heightFix">
+                            <br/>
+                            <textarea id="resultEditor"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Modal Structure -->
@@ -234,7 +242,6 @@
                     <h4 class="light text-white " style="padding:5px">Settings</h4>
                 </div>
                 <div class="modal-content">
-
                     <p>Select you editor theme :</p>
                     <select class="browser-default" ng-model="settings.theme">
                         <option value="default">default</option>
@@ -295,21 +302,8 @@
                     <h6>Suraj E.S.</h6>
                 </div>
             </div>
-          
         </div>
     </div>
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/cm/codemirror.js"></script>
-    <script src="js/cm/matchbrackets.js"></script>
-    <script src="js/cm/foldgutter.js"></script>
-    <script src="js/cm/foldcode.js"></script>
-    <script src="js/cm/javascript.js"></script>
-    <script src="js/cm/continuecomment.js"></script>
-    <script src="js/cm/comment.js"></script>
-    <script src="js/custom/Plugin.js"></script>
-    <script src="js/custom/ESService.js"></script>
-    <script src="js/custom/MainController.js"></script>
 </body>
 
 </html>

@@ -1,12 +1,25 @@
 .light {
     font-weight: 300
 }
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
 }
+
 .title-area {
     -webkit-app-region: drag;
     cursor: move;
+}
+
+.heightFix {
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 .title-button {
@@ -56,8 +69,10 @@ nav a.button-collapse i {
     color: black;
 }
 
-.modal-content .CodeMirror {
-    height: 95%;
+.CodeMirror {
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 td,
@@ -97,12 +112,18 @@ nav ul .windowButton.active {
     background-color: #FF4E4E;
     will-change: left, right;
 }
-.top.tabs .tab a{
+
+.top.tabs .tab a {
     color: #fff;
-  }
-  .tab a .active{
-      font-weight: bold;
-    }
-#eQ .CodeMirror{
-  height: 70%;
+}
+
+.tab a .active {
+    font-weight: bold;
+}
+
+#eQ .CodeMirror,
+#res .CodeMirror {
+    position: absolute;
+    height: calc(100% - 164px);
+    width: calc(100% - 24px);
 }
