@@ -4,14 +4,14 @@
       "scripts": [ "background.js" ]
     }
   },
-  "content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self'; unsafe-eval 'self'; object-src 'self';",
-  "description": "This tool helps you do wonders with Elatic Search",
+  //"content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self'; unsafe-eval 'self'; object-src 'self';",
+  "description": "This tool helps you do wonders with elaticsearch for newbies and experts alike.",
   "icons": {
     "128": "est.png"
   },
   "manifest_version": 2,
   "minimum_chrome_version": "30",
-  "name": "Elastic Search Toolbox",
+  "name": "ElasticSearch Toolbox",
   "offline_enabled": true,
   "permissions": [
     "storage",

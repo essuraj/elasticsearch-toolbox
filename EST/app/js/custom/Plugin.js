@@ -11,24 +11,32 @@ $(document).ready(function () {
     queryEditor.setValue(JSON.stringify(defaultQuery, null, 2));
     chrome.storage.sync.get("settings", function (result) {
         console.log(result);
-        gs.settings = result.settings;
-        if (result.settings) {
-            if (result.settings.theme) {
-                resultEditor.setOption("theme", result.settings.theme);
-                queryEditor.setOption("theme", result.settings.theme);
+        if (Object.keys(result).length === 0) {
+            gs.settings = {
+                "theme": "neat",
+                "useEditor": true
+            };
+        } else {
+            gs.settings = result.settings;
+            if (result.settings) {
+                if (result.settings.theme) {
+                    resultEditor.setOption("theme", result.settings.theme);
+                    queryEditor.setOption("theme", result.settings.theme);
 
-            }
-            if (result.settings.useEditor!=undefined) {
-                $('ul.tabs').tabs('select_tab', 'eQ');
-            } else {
-                gs.settings.useEditor = true;
+                }
+                if (result.settings.useEditor != undefined) {
+                    $('ul.tabs').tabs('select_tab', 'eQ');
+                } else {
+                    gs.settings.useEditor = true;
+                }
+
             }
         }
         setTimeout(function () {
             resultEditor.refresh();
             queryEditor.refresh();
         }, 1);
-
+        gs.$digest();
     });
 
 });
