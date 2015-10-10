@@ -78,34 +78,34 @@
         <nav class="title-area">
             <div class="nav-wrapper blue-grey darken-4">
                 <a href="#" class="left light animated slideInDown" style="padding:0 5px;font-size:1.3rem">
-                    <i class="material-icon mdi-action-search left" style="margin-right:4px"></i> {{Title}}
+                    <i class="material-icon mdi-image-nature left" style="margin-right:4px"></i> {{Title}}
                 </a>
                 <ul class="left">
                     <li>
                         <div class="input-field title-button" style="padding:0 5px;font-size:1.3rem">
-                            <input id="search" ng-init="es.url='http://localhost:81'" placeholder="elasticsearch url" type="search" ng-model="es.url" style="margin:0">
+                            <input class="tooltipped" id="search" ng-init="es.url='http://localhost:81'" data-position="bottom" data-delay="10" data-tooltip="Type in your elasticsearch URL including the protocol (http/https)." placeholder="elasticsearch url" type="search" ng-model="es.url" style="margin:0">
                             <label for="search"><i class="mdi-editor-insert-link"></i></label>
                             <i class="material-icons mdi-content-send" style="color:#FF7D7D;font-size: 1.2rem" ng-click="connectToES(es.url)"></i>
                         </div>
                     </li>
                 </ul>
                 <ul id="nav-mobile" class="right animated fadeInDown">
-                    <li>
+                    <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Settings">
                         <a href="#settings" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-action-settings "></i></a>
                     </li>
-                    <li>
+                    <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Help">
                         <a href="#help" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-live-help "></i></a>
                     </li>
-                    <li>
+                    <li  class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="About">
                         <a href="#about" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-quick-contacts-mail"></i></a>
                     </li>
-                    <li class="windowButton animated bounceIn">
+                    <li class="windowButton animated bounceIn tooltipped" data-position="bottom" data-delay="1" data-tooltip="Minimize">
                         <i class="material-icons title-button mdi-hardware-keyboard-arrow-down waves-effect" id="min-window-button"></i>
                     </li>
-                    <li class="windowButton animated bounceIn">
+                    <li class="windowButton animated bounceIn tooltipped" data-position="bottom" data-delay="1" data-tooltip="Maximize">
                         <i class="material-icons title-button mdi-navigation-fullscreen waves-effect" id="max-window-button"></i>
                     </li>
-                    <li class="windowButton close animated bounceIn">
+                    <li class="windowButton close animated bounceIn tooltipped" data-position="bottom" data-delay="1" data-tooltip="Quit">
                         <i class="material-icons title-button mdi-content-clear waves-effect" id="close-window-button"></i>
                     </li>
                 </ul>
