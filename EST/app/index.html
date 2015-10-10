@@ -209,7 +209,7 @@
                                     <label for="field">{{esQ.field||"Field"}} value</label>
                                 </div>
                                 <br />
-                                <button class="btn btn-block blue" ng-click="addToQuery(esQ)">ADD</button>
+                                <button class="btn btn-block blue" ng-click="addToQuery(esQ)">ADD TO QUERY</button>
                                 <br />
                             </div>
                             <div class="col s8" style="max-height: 500px;overflow: auto;">
@@ -240,7 +240,48 @@
                             </div>
                         </div>
                         <div id="agg" class="row card-panel heightFix">
-                            Coming soon
+                            <div class="col s4">
+                                <p>Only term aggregation is supported (for now :))</p>
+                                <div class="input-field ">
+                                    <input placeholder="Some name to identify aggregation" ng-model="esQA.name" type="text" class="validate">
+                                    <label for="from">Aggregation Name</label>
+                                </div>
+                                <br />
+                                <select class="browser-default" ng-model="esQA.field" ng-options="o as o for o in allMappings">
+                                    <option value="">Select a field to perform aggregation on</option>
+                                </select>
+                                <br />
+                                <select class="browser-default" ng-init="esQA.type='terms'" ng-model="esQA.type">
+                                    <option value="terms">TERMS</option>
+                                </select>
+                                <br />
+                                <button class="btn btn-block blue" ng-click="addAggrToQuery(esQA)">ADD AGGREGATION</button>
+                            </div>
+                            <div class="col s8">
+                                <p>Apply Aggregations for documents over the following terms</p>
+                                <table class="responsive-table striped">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="condition">Name</th>
+                                            <th data-field="filed">Type</th>
+                                            <th data-field="value">Field</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="fq in qAggrTemp track by $index">
+                                            <td>{{fq.name}}</td>
+                                            <td>{{fq.type}}</td>
+                                            <td>{{fq.field}}</td>
+                                            <td>
+                                                <a class="waves-effect waves-light btn btn-flat " style="padding: 0 8px;" ng-click="qAggrTemp.splice($index,1)">
+                                                    <i class="mdi-action-delete"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
                         <div id="fld" class="row card-panel heightFix">
                             <div class="row">
@@ -257,7 +298,7 @@
                                 <label for="from">Index of where to start getting the results from</label>
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="How many results" ng-init="esQP.size=10"  ng-model="esQP.size" type="number" min="0" maxlength="5000" class="validate">
+                                <input placeholder="How many results" ng-init="esQP.size=10" ng-model="esQP.size" type="number" min="0" maxlength="5000" class="validate">
                                 <label for="len">Count of results to return</label>
                             </div>
                         </div>
