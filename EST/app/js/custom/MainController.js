@@ -38,6 +38,15 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
         $scope.allMappings = props;
 
     };
+    $scope.formatQuery = function () {
+        CodeMirror.commands["selectAll"](queryEditor);
+        var range = {
+            from: queryEditor.getCursor(true),
+            to: queryEditor.getCursor(false)
+        };
+        queryEditor.autoFormatRange(range.from, range.to);
+        CodeMirror.commands["singleSelection"](queryEditor);
+    };
     $scope.addToQuery = function(esQ) {
         if (esQ == undefined || Object.keys(esQ).length != 4) {
             Materialize.toast('You need to fill in all the fields', 3000, 'orange darken-4');
@@ -58,18 +67,29 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
             $('#index').removeClass('shake').removeClass('animated').addClass('shake').addClass('animated');
             return;
         }
-        var query = BuildQuery($scope.qfieldTemp)
-        console.debug(query);
+
+        var queryString = '';
+        var queryObj = '';
+        if ($scope.settings.useEditor)
+        {
+            queryString = queryEditor.getValue();
+        } else {
+            var queryObj = BuildQuery($scope.qfieldTemp)
+            queryString = JSON.stringify(queryObj)
+        }
+       
+        console.debug(queryString);
 
         var url = String.format("{0}/{1}/_search", es.url, es.selectedIndex);
 
-        $ess.executeQuery(url, JSON.stringify(query))
+        $ess.executeQuery(url, queryString)
             .then(function(response) {
                 console.log("Q Result", response);
                 $scope.Output = response;
-                queryEditor.setValue(JSON.stringify(query, null, 2));
+                queryEditor.setValue(queryString);
                 resultEditor.setValue(JSON.stringify(response, null, 2));
-                setTimeout(function() {
+                setTimeout(function () {
+
                     resultEditor.refresh();
                     queryEditor.refresh();
                 }, 1);

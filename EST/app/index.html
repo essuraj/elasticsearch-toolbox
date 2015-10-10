@@ -57,16 +57,19 @@
     <script src="js/cm/codemirror.js"></script>
     <script src="js/cm/matchbrackets.js"></script>
     <script src="js/cm/foldgutter.js"></script>
+    <link href="js/cm/lint.css" rel="stylesheet" />
+    <script src="js/cm/lint.js"></script>
+    <script src="js/cm/json-lint.js"></script>
     <script src="js/cm/foldcode.js"></script>
     <script src="js/cm/javascript.js"></script>
     <script src="js/cm/continuecomment.js"></script>
     <script src="js/cm/comment.js"></script>
+    <script src="js/cm/formatting.js"></script>
     <script src="js/custom/Init.js"></script>
     <script src="js/custom/Plugin.js"></script>
     <script src="js/custom/ESService.js"></script>
     <script src="js/custom/MainController.js"></script>
     <style>
-
     </style>
 </head>
 
@@ -130,18 +133,28 @@
                         </div>
                     </div>
                     <div class="col s6">
+
+                        <a ng-click="formatQuery()" class="waves-effect btn-flat text-white" style="padding:0 5px" ng-show="es.selectedIndex && settings.useEditor">
+                            <i class="material-icons title-button mdi-editor-format-align-justify"></i> Format Query
+                        </a>
                     </div>
                 </div>
                 <a class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px; position: absolute;" ng-click="execute(es)">
                     <i class="mdi-av-play-arrow"></i>
                 </a>
-                <ul class="row tabs top blue darken-4">
-                    <li class="tab col s3"><a class="active" href="#bQ">Contruct a Query</a></li>
-                    <li class="tab col s3"><a href="#eQ">Query Editor</a></li>
-                    <li class="tab col s3"><a href="#res">Result</a></li>
+                <ul class="row tabs top blue darken-4" ng-show="es.selectedIndex">
+                    <li class="tab" ng-hide="settings.useEditor">
+                        <a ng-class="{'active': !settings.useEditor}" href="#bQ">Contruct a Query</a>
+                    </li>
+                    <li class="tab" ng-show="settings.useEditor">
+                        <a ng-class="{'active': settings.useEditor}" href="#eQ">Query Editor</a>
+                    </li>
+                    <li class="tab">
+                        <a href="#res">Result</a>
+                    </li>
                 </ul>
-                <div class="row" style="margin-top: -6px;">
-                    <div id="bQ" class="card-panel" style="padding: 5px">
+                <div class="row" style="margin-top: -6px;" ng-show="es.selectedIndex">
+                    <div id="bQ" class="" style="padding: 5px 0" ng-hide="settings.useEditor">
                         <ul class="row tabs">
                             <li class="tab col s3"><a class="active" href="#qB">Query Builder</a></li>
                             <li class="tab col s3"><a href="#agg">Aggregations Builder</a></li>
@@ -223,7 +236,7 @@
                         </div>
                         <div id="test4" class="row card-panel heightFix">Test 4</div>
                     </div>
-                    <div id="eQ" class="row">
+                    <div id="eQ" class="row" ng-show="settings.useEditor">
                         <div class="col s12 heightFix">
                             <br />
                             <textarea id="queryEditor"></textarea>
@@ -237,7 +250,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal Structure -->
+
             <div id="settings" class="modal modal-fixed-footer">
                 <div class="row deep-purple center-align no-margin">
                     <p class="light text-white " style="padding: 10px; margin: 0">
@@ -245,49 +258,62 @@
                     </p>
                 </div>
                 <div class="modal-content">
-                    <p>Select you editor theme :</p>
-                    <select class="browser-default" ng-model="settings.theme">
-                        <option value="default">default</option>
-                        <option value="3024-day">3024-day</option>
-                        <option value="3024-night">3024-night</option>
-                        <option value="abcdef">abcdef</option>
-                        <option value="ambiance">ambiance</option>
-                        <option value="base16-dark">base16-dark</option>
-                        <option value="base16-light">base16-light</option>
-                        <option value="blackboard">blackboard</option>
-                        <option value="cobalt">cobalt</option>
-                        <option value="colorforth">colorforth</option>
-                        <option value="dracula">dracula</option>
-                        <option value="eclipse">eclipse</option>
-                        <option value="elegant">elegant</option>
-                        <option value="erlang-dark">erlang-dark</option>
-                        <option value="icecoder">icecoder</option>
-                        <option value="lesser-dark">lesser-dark</option>
-                        <option value="liquibyte">liquibyte</option>
-                        <option value="material">material</option>
-                        <option value="mbo">mbo</option>
-                        <option value="mdn-like">mdn-like</option>
-                        <option value="midnight">midnight</option>
-                        <option value="monokai">monokai</option>
-                        <option value="neat">neat</option>
-                        <option value="neo">neo</option>
-                        <option value="night">night</option>
-                        <option value="paraiso-dark">paraiso-dark</option>
-                        <option value="paraiso-light">paraiso-light</option>
-                        <option value="pastel-on-dark">pastel-on-dark</option>
-                        <option value="rubyblue">rubyblue</option>
-                        <option value="seti">seti</option>
-                        <option value="solarized dark">solarized dark</option>
-                        <option value="solarized light">solarized light</option>
-                        <option value="the-matrix">the-matrix</option>
-                        <option value="tomorrow-night-bright">tomorrow-night-bright</option>
-                        <option value="tomorrow-night-eighties">tomorrow-night-eighties</option>
-                        <option value="ttcn">ttcn</option>
-                        <option value="twilight">twilight</option>
-                        <option value="vibrant-ink">vibrant-ink</option>
-                        <option value="xq-dark">xq-dark</option>
-                        <option value="xq-light">xq-light</option>
-                    </select>
+                    <div class="row">
+                        <p>Select you editor theme :</p>
+                        <select class="browser-default" ng-model="settings.theme">
+                            <option value="default">default</option>
+                            <option value="3024-day">3024-day</option>
+                            <option value="3024-night">3024-night</option>
+                            <option value="abcdef">abcdef</option>
+                            <option value="ambiance">ambiance</option>
+                            <option value="base16-dark">base16-dark</option>
+                            <option value="base16-light">base16-light</option>
+                            <option value="blackboard">blackboard</option>
+                            <option value="cobalt">cobalt</option>
+                            <option value="colorforth">colorforth</option>
+                            <option value="dracula">dracula</option>
+                            <option value="eclipse">eclipse</option>
+                            <option value="elegant">elegant</option>
+                            <option value="erlang-dark">erlang-dark</option>
+                            <option value="icecoder">icecoder</option>
+                            <option value="lesser-dark">lesser-dark</option>
+                            <option value="liquibyte">liquibyte</option>
+                            <option value="material">material</option>
+                            <option value="mbo">mbo</option>
+                            <option value="mdn-like">mdn-like</option>
+                            <option value="midnight">midnight</option>
+                            <option value="monokai">monokai</option>
+                            <option value="neat">neat</option>
+                            <option value="neo">neo</option>
+                            <option value="night">night</option>
+                            <option value="paraiso-dark">paraiso-dark</option>
+                            <option value="paraiso-light">paraiso-light</option>
+                            <option value="pastel-on-dark">pastel-on-dark</option>
+                            <option value="rubyblue">rubyblue</option>
+                            <option value="seti">seti</option>
+                            <option value="solarized dark">solarized dark</option>
+                            <option value="solarized light">solarized light</option>
+                            <option value="the-matrix">the-matrix</option>
+                            <option value="tomorrow-night-bright">tomorrow-night-bright</option>
+                            <option value="tomorrow-night-eighties">tomorrow-night-eighties</option>
+                            <option value="ttcn">ttcn</option>
+                            <option value="twilight">twilight</option>
+                            <option value="vibrant-ink">vibrant-ink</option>
+                            <option value="xq-dark">xq-dark</option>
+                            <option value="xq-light">xq-light</option>
+                        </select>
+                    </div>
+                    <div class="row">
+
+                        <div class="switch" style="padding: 5px">
+                            <p>
+                                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" ng-model="settings.useEditor" />
+                                <label for="filled-in-box"> Use Query Editor instead of Query Builder</label>
+                            </p>
+
+
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="waves-effect btn-flat modal-action modal-close waves-red">Cancel</a>
@@ -296,7 +322,7 @@
             </div>
             <div id="help" class="modal modal-fixed-footer" style="height:200px">
                 <div class="modal-content center-align">
-                    <h2>COMMING SOON</h2>
+                    <h6>COMMING SOON</h6>
                 </div>
             </div>
             <div id="about" class="modal modal-fixed-footer" style="height:200px">

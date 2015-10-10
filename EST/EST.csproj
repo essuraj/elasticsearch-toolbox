@@ -102,7 +102,11 @@
     <Content Include="app\js\cm\foldcode.js" />
     <Content Include="app\js\cm\foldgutter.css" />
     <Content Include="app\js\cm\foldgutter.js" />
+    <Content Include="app\js\cm\formatting.js" />
     <Content Include="app\js\cm\javascript.js" />
+    <Content Include="app\js\cm\json-lint.js" />
+    <Content Include="app\js\cm\lint.css" />
+    <Content Include="app\js\cm\lint.js" />
     <Content Include="app\js\cm\matchbrackets.js" />
     <Content Include="app\js\custom\ESService.js" />
     <Content Include="app\js\custom\Init.js" />
