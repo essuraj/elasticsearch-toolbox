@@ -105,6 +105,7 @@
     <Content Include="app\js\cm\javascript.js" />
     <Content Include="app\js\cm\matchbrackets.js" />
     <Content Include="app\js\custom\ESService.js" />
+    <Content Include="app\js\custom\Init.js" />
     <Content Include="app\js\custom\Plugin.js" />
     <Content Include="app\js\custom\MainController.js" />
     <Content Include="app\js\jquery-2.1.4.min.js" />
