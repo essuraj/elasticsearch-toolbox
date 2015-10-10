@@ -10,7 +10,7 @@ $(document).ready(function () {
     resultEditor.setOption("readOnly", true)
     queryEditor.setValue(JSON.stringify(defaultQuery, null, 2));
     chrome.storage.sync.get("settings", function (result) {
-        console.log(result);
+        //console.log(result);
         if (Object.keys(result).length === 0) {
             gs.settings = {
                 "theme": "neat",
@@ -25,7 +25,10 @@ $(document).ready(function () {
 
                 }
                 if (result.settings.useEditor != undefined) {
-                    $('ul.tabs').tabs('select_tab', 'eQ');
+                    if(result.settings.useEditor==true)
+                        $('ul.tabs').tabs('select_tab', 'eQ');
+                    else
+                        $('ul.tabs').tabs('select_tab', 'qB');
                 } else {
                     gs.settings.useEditor = true;
                 }

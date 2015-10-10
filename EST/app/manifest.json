@@ -4,7 +4,6 @@
       "scripts": [ "background.js" ]
     }
   },
-  //"content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self'; unsafe-eval 'self'; object-src 'self';",
   "description": "This tool helps you do wonders with elaticsearch for newbies and experts alike.",
   "icons": {
     "16": "est_16_16.png",

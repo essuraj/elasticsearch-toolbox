@@ -19,7 +19,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
         var url = String.format("{0}/{1}", es.url, es.selectedIndex);
         $ess.getMappings(url)
             .then(function(response) {
-                console.log("Mappings", response);
+                //console.log("Mappings", response);
                 $scope.Mappings = response;
 
                 $scope.allMappings = [];
@@ -87,7 +87,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
 
         $ess.executeQuery(url, queryString)
             .then(function(response) {
-                console.log("Q Result", response);
+                //console.log("Q Result", response);
                 $scope.Output = response;
                 queryEditor.setValue(queryString);
                 resultEditor.setValue(JSON.stringify(response, null, 2));
@@ -130,6 +130,8 @@ function BuildQuery(queryParams) {
 
     //Adding Query Params
     queryTemplate.query.bool = GetQuery(queryParams);
+    queryTemplate.from = gs.esQP.from;
+    queryTemplate.size = gs.esQP.size;
 
     return queryTemplate;
 }
@@ -182,6 +184,6 @@ function QueryObjGenerator(type, field, value) {
         objStr = '{"' + type + '":{"' + field + '":"' + value + '"}}';
     }
     var json = $.parseJSON(objStr);
-    console.log(type, json);
+    //console.log(type, json);
     return json;
 }
