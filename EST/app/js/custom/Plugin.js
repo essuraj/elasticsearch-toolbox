@@ -13,7 +13,7 @@ $(document).ready(function () {
         //console.log(result);
         if (Object.keys(result).length === 0) {
             gs.settings = {
-                "theme": "neat",
+                "theme": "blackboard",
                 "useEditor": true
             };
         } else {
@@ -48,9 +48,12 @@ function initCodeMirror(element) {
     return CodeMirror.fromTextArea(document.getElementById(element), {
         matchBrackets: true,
         lineNumbers: true, styleActiveLine: true,
-        autoCloseBrackets: true,
-        mode: "application/ld+json",
-        lineWrapping: true
+        autoCloseBrackets: true,  lineWrapping: true,
+        extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+        foldGutter: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        mode: "application/ld+json"
+   
     });
 }
 

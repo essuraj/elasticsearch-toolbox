@@ -62,7 +62,10 @@
     <script src="js/cm/json-lint.js"></script>
     <script src="js/cm/foldcode.js"></script>
     <script src="js/cm/javascript.js"></script>
+    <link href="js/cm/foldgutter.css" rel="stylesheet" />
+    <script src="js/cm/brace-fold.js"></script>
     <script src="js/cm/continuecomment.js"></script>
+    <script src="js/cm/active-line.js"></script>
     <script src="js/cm/comment.js"></script>
     <script src="js/cm/formatting.js"></script>
     <script src="js/custom/Init.js"></script>
@@ -146,7 +149,11 @@
                 </a>
                 <ul class="row tabs top blue darken-4" ng-show="es.selectedIndex">
                     <li class="tab" ng-hide="settings.useEditor">
-                        <a ng-class="{'active': !settings.useEditor}" href="#bQ">Contruct a Query</a>
+
+                        <a ng-class="{'active': !settings.useEditor}" href="#bQ">
+                            <i class="mdi-image-style"></i>
+                            Contruct a Query
+                        </a>
                     </li>
                     <li class="tab" ng-show="settings.useEditor">
                         <a ng-class="{'active': settings.useEditor}" href="#eQ">
@@ -232,7 +239,9 @@
                                 </table>
                             </div>
                         </div>
-                        <div id="agg" class="row card-panel heightFix">Test 2</div>
+                        <div id="agg" class="row card-panel heightFix">
+                            Coming soon
+                        </div>
                         <div id="fld" class="row card-panel heightFix">
                             <div class="row">
                                 <p>Select the fields that you want returned in the results ( Dont select any if you want them all )</p>

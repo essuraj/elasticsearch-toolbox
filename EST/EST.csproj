@@ -103,6 +103,8 @@
     <Content Include="app\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="app\index.html" />
     <Content Include="app\js\angular.min.js" />
+    <Content Include="app\js\cm\active-line.js" />
+    <Content Include="app\js\cm\brace-fold.js" />
     <Content Include="app\js\cm\codemirror.js" />
     <Content Include="app\js\cm\comment.js" />
     <Content Include="app\js\cm\continuecomment.js" />
