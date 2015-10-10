@@ -1,7 +1,10 @@
 .light {
     font-weight: 300
 }
-
+.input-field label
+{
+    left:0
+}
 [ng\:cloak],
 [ng-cloak],
 [data-ng-cloak],
@@ -116,7 +119,9 @@ nav ul .windowButton.active {
 .top.tabs .tab a {
     color: #fff;
 }
-
+.no-margin{
+    margin:0
+}
 .tab a .active {
     font-weight: bold;
 }
@@ -126,4 +131,8 @@ nav ul .windowButton.active {
     position: absolute;
     height: calc(100% - 164px);
     width: calc(100% - 24px);
+}
+.modal{
+        max-height: 600px;
+    width: 500px;
 }
