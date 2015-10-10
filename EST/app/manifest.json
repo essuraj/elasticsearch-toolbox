@@ -7,7 +7,10 @@
   //"content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self'; unsafe-eval 'self'; object-src 'self';",
   "description": "This tool helps you do wonders with elaticsearch for newbies and experts alike.",
   "icons": {
-    "128": "est.png"
+    "16": "est_16_16.png",
+    "48": "est_48_48.png",
+    "32": "est_32_32.png",
+    "128": "est_128_128.png"
   },
   "manifest_version": 2,
   "minimum_chrome_version": "30",

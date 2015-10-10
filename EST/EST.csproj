@@ -94,7 +94,11 @@
     <Content Include="app\css\materialize.min.css" />
     <Content Include="app\css\cmtheme\mdn-like.css" />
     <Content Include="app\css\cmtheme\neat.css" />
-    <Content Include="app\est.png" />
+    <Content Include="app\est_128_128.png" />
+    <Content Include="app\est_16_16.png" />
+    <Content Include="app\est_32_32.png" />
+    <Content Include="app\est_48_48.png" />
+    <Content Include="app\est_96_96.png" />
     <Content Include="app\font\material-design-icons\LICENSE.txt" />
     <Content Include="app\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="app\index.html" />
