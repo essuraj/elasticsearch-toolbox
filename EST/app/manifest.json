@@ -16,6 +16,7 @@
   "permissions": [
     "storage",
     "http://*/",
+    "https://*/",
     "unlimitedStorage",
     "notifications"
   ],

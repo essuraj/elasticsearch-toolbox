@@ -77,7 +77,9 @@
     <div ng-controller="MainController" id="appWindow">
         <nav class="title-area">
             <div class="nav-wrapper blue-grey darken-4">
-                <a href="#" class="left light animated slideInDown" style="padding:0 5px;font-size:1.3rem"><i class="material-icon mdi-action-search left" style="margin-right:4px"></i>{{Title}}</a>
+                <a href="#" class="left light animated slideInDown" style="padding:0 5px;font-size:1.3rem">
+                    <i class="material-icon mdi-action-search left" style="margin-right:4px"></i> {{Title}}
+                </a>
                 <ul class="left">
                     <li>
                         <div class="input-field title-button" style="padding:0 5px;font-size:1.3rem">
@@ -97,13 +99,13 @@
                     <li>
                         <a href="#about" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-quick-contacts-mail"></i></a>
                     </li>
-                    <li class="windowButton">
+                    <li class="windowButton animated bounceIn">
                         <i class="material-icons title-button mdi-hardware-keyboard-arrow-down waves-effect" id="min-window-button"></i>
                     </li>
-                    <li class="windowButton">
+                    <li class="windowButton animated bounceIn">
                         <i class="material-icons title-button mdi-navigation-fullscreen waves-effect" id="max-window-button"></i>
                     </li>
-                    <li class="windowButton">
+                    <li class="windowButton close animated bounceIn">
                         <i class="material-icons title-button mdi-content-clear waves-effect" id="close-window-button"></i>
                     </li>
                 </ul>
@@ -135,7 +137,7 @@
                     <div class="col s6">
 
                         <a ng-click="formatQuery()" class="waves-effect btn-flat text-white" style="padding:0 5px" ng-show="es.selectedIndex && settings.useEditor">
-                            <i class="material-icons title-button mdi-editor-format-align-justify"></i> Format Query
+                            <i class="mdi-editor-format-indent-increase"></i> Format Query
                         </a>
                     </div>
                 </div>
@@ -147,10 +149,16 @@
                         <a ng-class="{'active': !settings.useEditor}" href="#bQ">Contruct a Query</a>
                     </li>
                     <li class="tab" ng-show="settings.useEditor">
-                        <a ng-class="{'active': settings.useEditor}" href="#eQ">Query Editor</a>
+                        <a ng-class="{'active': settings.useEditor}" href="#eQ">
+                            <i class="mdi-communication-call-made"></i>
+                            Query Editor
+                        </a>
                     </li>
                     <li class="tab">
-                        <a href="#res">Result</a>
+                        <a href="#res">
+                            <i class="mdi-communication-call-received"></i>
+                            Result
+                        </a>
                     </li>
                 </ul>
                 <div class="row" style="margin-top: -6px;" ng-show="es.selectedIndex">
@@ -321,14 +329,34 @@
                 </div>
             </div>
             <div id="help" class="modal modal-fixed-footer" style="height:200px">
+                <div class="row grey center-align no-margin">
+                    <p class="light text-white " style="padding: 10px; margin: 0">
+                        <i class="material-icons title-button mdi-action-supervisor-account "></i> Help
+                    </p>
+                </div>
                 <div class="modal-content center-align">
-                    <h6>COMMING SOON</h6>
+                    <p>Really.. isnt the app self explainatory. We'll you're here so.... guess not.... :( </p>
+                    <h6>COMING SOON (I'll try)</h6>
                 </div>
             </div>
-            <div id="about" class="modal modal-fixed-footer" style="height:200px">
+            <div id="about" class="modal modal-fixed-footer" style="height:250px">
+                <div class="row green center-align no-margin">
+                    <p class="light text-white " style="padding: 10px; margin: 0">
+                        <i class="material-icons title-button mdi-action-supervisor-account "></i> About
+                    </p>
+                </div>
                 <div class="modal-content center-align">
-                    <p>Author as of now</p>
-                    <h6>Suraj E.S.</h6>
+                    <h6>Author</h6>
+                    <p>Suraj E.S.</p>
+                    <p>
+                        <i class="mdi-action-bug-report"></i> Report any bugs you find or suggestions <a target="_blank" href="https://github.com/essuraj/elasticsearch-toolbox/issues">here</a>
+                    </p>
+                    <p>
+                        <i class="mdi-social-share"></i> Do share it
+                    </p>
+                    <!--<img class="share" src="css\img\gp.png" ng-click="shareTo('Google Plus')" style="z-index:999;top:4px " />
+                    <img class="share" src="css\img\fb.png" ng-click="shareTo('Facebook')" style="z-index:999;top:10px " />
+                    <img class="share" src="css\img\t.png" ng-click="shareTo('Twitter')" style="z-index:999;top:10px " />-->
                 </div>
             </div>
         </div>

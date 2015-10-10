@@ -87,6 +87,9 @@
     <Content Include="app\css\codemirror.css" />
     <Content Include="app\css\custom.css" />
     <Content Include="app\css\dataurl.css" />
+    <Content Include="app\css\img\fb.png" />
+    <Content Include="app\css\img\gp.png" />
+    <Content Include="app\css\img\t.png" />
     <Content Include="app\css\materialize.css" />
     <Content Include="app\css\materialize.min.css" />
     <Content Include="app\css\cmtheme\mdn-like.css" />

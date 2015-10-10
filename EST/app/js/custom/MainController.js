@@ -38,6 +38,9 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
         $scope.allMappings = props;
 
     };
+    $scope.shareTo = function (site) {
+        share(site);
+    };
     $scope.formatQuery = function () {
         CodeMirror.commands["selectAll"](queryEditor);
         var range = {

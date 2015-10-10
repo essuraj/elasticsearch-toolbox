@@ -6,6 +6,9 @@
     });
 });
 
+var gp = "https://plus.google.com/share?url=https://chrome.google.com/webstore/detail/pbinfbikhndabcdlabpcbhggkcdakgfg";
+var fb = "http://www.facebook.com/sharer.php?u=https://chrome.google.com/webstore/detail/pbinfbikhndabcdlabpcbhggkcdakgfg&t=Coding the web";
+var tw = "http://twitter.com/home?status=https://chrome.google.com/webstore/detail/pbinfbikhndabcdlabpcbhggkcdakgfg";
 paceOptions = {
     ajax: true,
     document: true,
@@ -34,3 +37,44 @@ String.format = function () {
     }
     return s;
 };
+
+function share(name) {
+    var site = "";
+    switch (name) {
+        case "Google Plus":
+            site = gp;
+            break;
+        case "Facebook":
+            site = fb;
+            break;
+
+        case "Twitter":
+            site = tw;
+            break;
+
+    }
+    newwindow = window.open(site, 'Share to ' + name, 'height=640,width=480');
+    if (window.focus) {
+        newwindow.focus()
+    }
+    return false;
+
+}
+
+function popuperf() {
+    newwindow = window.open(fb, 'Share to ' + name, 'height=640,width=480');
+    if (window.focus) {
+        newwindow.focus()
+    }
+    return false;
+
+}
+
+function popupert() {
+    newwindow = window.open(tw, 'Share to ' + name, 'height=640,width=480');
+    if (window.focus) {
+        newwindow.focus()
+    }
+    return false;
+
+}

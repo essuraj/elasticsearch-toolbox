@@ -13,7 +13,19 @@
 .x-ng-cloak {
     display: none !important;
 }
-
+.share {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    cursor: pointer;
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+.share:hover{
+    cursor: pointer;
+    -webkit-transform: rotateY(180deg);
+}
 .title-area {
     -webkit-app-region: drag;
     cursor: move;
@@ -102,8 +114,15 @@ nav ul li.active {
 nav ul .windowButton:hover,
 nav ul .windowButton.active {
     background-color: #980202;
+      -webkit-animation: swing 1s;
+    animation: swing 1s;
+  
 }
-
+nav ul .close:hover {
+    background-color: #980202;
+     -webkit-animation: jello 1s;
+    animation: jello 1s;
+}
 .modal.modal-fixed-footer .modal-content {
     height: auto;
 }
