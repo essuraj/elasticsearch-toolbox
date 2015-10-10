@@ -4,7 +4,7 @@
       "scripts": [ "background.js" ]
     }
   },
-  "description": "This tool helps you do wonders with elaticsearch for newbies and experts alike.",
+  "description": "The tool that helps you do wonders with elaticsearch for newbies and experts alike.",
   "icons": {
     "16": "est_16_16.png",
     "48": "est_48_48.png",
@@ -22,5 +22,5 @@
     "unlimitedStorage",
     "notifications"
   ],
-  "version": "0.1"
+  "version": "0.3"
 }
