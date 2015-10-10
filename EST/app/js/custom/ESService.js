@@ -1,8 +1,6 @@
 app.service('ESService', ['$http', function ($http) {
 
     this.getIndexes = function (url) {
-
-
         return $http.get(url + "/_stats")
             .then(
                 function (data) {
@@ -17,11 +15,11 @@ app.service('ESService', ['$http', function ($http) {
                     throw httpError.status + " : " + httpError.data.error;
                 });
     };
+
     this.getMappings = function (url) {
         return $http.get(url)
             .then(
                 function (data) {
-
                     return data.data;
                 },
                 function (httpError) {
@@ -31,6 +29,7 @@ app.service('ESService', ['$http', function ($http) {
                 });
 
     };
+
     this.executeQuery = function (url, query) {
         return $http.post(url, query)
             .then(

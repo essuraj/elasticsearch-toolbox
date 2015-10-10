@@ -1,5 +1,4 @@
-﻿
-var app = angular.module("est", [], function ($provide) {
+﻿var app = angular.module("est", [], function ($provide) {
     // Prevent Angular from sniffing for the history API since it's not supported in packaged apps.
     $provide.decorator('$window', function ($delegate) {
         $delegate.history = null;
@@ -12,6 +11,7 @@ paceOptions = {
     document: true,
     eventLag: true
 };
+
 var defaultQuery = {
     "query": {
         "bool": {

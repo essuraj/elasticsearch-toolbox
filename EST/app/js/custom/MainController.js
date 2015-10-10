@@ -2,7 +2,6 @@ var gs;
 app.controller('MainController', ['$scope', '$http', 'ESService', function($scope, $http, $ess) {
     $scope.Title = "elasticsearch toolbox";
     $scope.qfieldTemp = [];
-    $scope.indexInfo = {};
     gs = $scope;
    
     $scope.connectToES = function(url) {
@@ -13,10 +12,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
             $scope.esStat = stat.data;
             $scope.isConnected = true;
         });
-
-
     };
-
 
     $scope.changeIndex = function(es) {
         $scope.indexInfo = $scope.indexes[es.selectedIndex];
@@ -28,20 +24,12 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
 
                 $scope.allMappings = [];
                 var mappingsObj = (response[Object.keys(response)]).mappings;
-                // $scope.MappingProperties = Object.keys(mappingsObj.properties);
                 $scope.MappingList = Object.keys(mappingsObj);
 
                 $.each($scope.MappingList, function(k, v) {
-                    //var map=new Object();
-                    //map.doc=v;
                     $scope.allMappings = $scope.allMappings.concat(Object.keys(mappingsObj[v].properties));
-
                 });
-
-
             });
-
-
 
     };
     $scope.changeMapping = function(es) {
@@ -71,8 +59,8 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
             return;
         }
         var query = BuildQuery($scope.qfieldTemp)
-        queryEditor.refresh();
         console.debug(query);
+
         var url = String.format("{0}/{1}/_search", es.url, es.selectedIndex);
 
         $ess.executeQuery(url, JSON.stringify(query))
@@ -83,21 +71,19 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
                 resultEditor.setValue(JSON.stringify(response, null, 2));
                 setTimeout(function() {
                     resultEditor.refresh();
-                    
+                    queryEditor.refresh();
                 }, 1);
-
                 $('ul.tabs').tabs('select_tab', 'res');
-
             });
-
-
-
     };
+
     $scope.saveSettings = function(settings) {
         resultEditor.setOption("theme", settings.theme);
         queryEditor.setOption("theme", settings.theme);
-        resultEditor.refresh();
-        queryEditor.refresh();
+        setTimeout(function () {
+            resultEditor.refresh();
+            queryEditor.refresh();
+        }, 1);
         if (settings)
             chrome.storage.sync.set({
                 'settings': settings
@@ -109,7 +95,6 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function($scop
 
 function BuildQuery(queryParams) {
     var queryTemplate = $.parseJSON(queryEditor.getValue());
-
 
     //Adding selected fields
     var jQfields = $('.fields:checked');
@@ -153,7 +138,6 @@ function GetQuery(queryParams) {
                 {
                     throw "";
                 }
-
         }
 
     });
