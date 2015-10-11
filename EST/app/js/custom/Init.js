@@ -6,9 +6,9 @@
     });
 });
 
-var gp = "https://plus.google.com/share?url=https://chrome.google.com/webstore/detail/pbinfbikhndabcdlabpcbhggkcdakgfg";
-var fb = "http://www.facebook.com/sharer.php?u=https://chrome.google.com/webstore/detail/pbinfbikhndabcdlabpcbhggkcdakgfg&t=Coding the web";
-var tw = "http://twitter.com/home?status=https://chrome.google.com/webstore/detail/pbinfbikhndabcdlabpcbhggkcdakgfg";
+var gp = "https://plus.google.com/share?url=https://chrome.google.com/webstore/detail/elasticsearch-toolbox/focdbmjgdonlpdknobfghplhmafpgfbp";
+var fb = "http://www.facebook.com/sharer.php?u=https://chrome.google.com/webstore/detail/elasticsearch-toolbox/focdbmjgdonlpdknobfghplhmafpgfbp";
+var tw = "http://twitter.com/home?status=https://chrome.google.com/webstore/detail/elasticsearch-toolbox/focdbmjgdonlpdknobfghplhmafpgfbp";
 paceOptions = {
     ajax: true,
     document: true,

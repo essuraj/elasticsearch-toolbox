@@ -37,8 +37,8 @@ app.service('ESService', ['$http', function ($http) {
                     return data.data;
                 },
                 function (httpError) {
-                  
-                    Materialize.toast(httpError.data.error, 3000, 'red');
+                    return httpError.data.error;
+                    Materialize.toast("Query Error", 3000, 'red');
                     throw httpError;
                 });
 
