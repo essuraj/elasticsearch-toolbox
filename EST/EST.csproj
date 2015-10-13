@@ -90,7 +90,6 @@
     <Content Include="app\css\img\fb.png" />
     <Content Include="app\css\img\gp.png" />
     <Content Include="app\css\img\t.png" />
-    <Content Include="app\css\materialize.css" />
     <Content Include="app\css\materialize.min.css" />
     <Content Include="app\css\cmtheme\mdn-like.css" />
     <Content Include="app\css\cmtheme\neat.css" />
@@ -105,14 +104,13 @@
     <Content Include="app\js\angular.min.js" />
     <Content Include="app\js\cm\active-line.js" />
     <Content Include="app\js\cm\brace-fold.js" />
-    <Content Include="app\js\cm\codemirror.js" />
+    <Content Include="app\js\cm\codemirror-compressed.js" />
     <Content Include="app\js\cm\comment.js" />
     <Content Include="app\js\cm\continuecomment.js" />
     <Content Include="app\js\cm\foldcode.js" />
     <Content Include="app\js\cm\foldgutter.css" />
     <Content Include="app\js\cm\foldgutter.js" />
     <Content Include="app\js\cm\formatting.js" />
-    <Content Include="app\js\cm\javascript.js" />
     <Content Include="app\js\cm\json-lint.js" />
     <Content Include="app\js\cm\lint.css" />
     <Content Include="app\js\cm\lint.js" />
@@ -122,7 +120,6 @@
     <Content Include="app\js\custom\Plugin.js" />
     <Content Include="app\js\custom\MainController.js" />
     <Content Include="app\js\jquery-2.1.4.min.js" />
-    <Content Include="app\js\materialize.js" />
     <Content Include="app\js\materialize.min.js" />
     <Content Include="app\js\pace.min.js" />
     <Content Include="Properties\build\lib\Ionic.Zip.DLL" />
