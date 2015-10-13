@@ -78,11 +78,13 @@
 <body ng-app="est" style="background-color: #F1F1F1">
     <div ng-controller="MainController" id="appWindow">
         <ul id="urls" class="dropdown-content title-button">
-           
-            <li>
-                <a class="title-button" ng-repeat="url in settings.saveURLs" ng-click="es.url=url;connectToES(url)"><i class="mdi-action-favorite"></i> {{url}}</a>
+
+            <li ng-repeat="url in settings.saveURLs">
+                <a class="title-button" ng-click="es.url=url;connectToES(url)">
+                    <i class="mdi-action-favorite" style="color:#ff4081"></i> {{url}}
+                </a>
             </li>
-           
+
         </ul>
         <nav class="title-area">
 
@@ -99,9 +101,14 @@
                         </div>
 
                     </li>
-                    <li ng-show="isConnected" >
+                    <li ng-show="isConnected && settings.saveURLs.indexOf(es.url)===-1" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Save this url.">
                         <a class="waves-effect title-button" ng-click="saveUrl(es.url)">
-                            <i class="material-icons mdi-content-save"></i> 
+                            <i class="material-icons mdi-content-add-circle-outline"></i>
+                        </a>
+                    </li>
+                    <li ng-show="isConnected && settings.saveURLs.indexOf(es.url)!==-1" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Unsave this url.">
+                        <a class="waves-effect title-button" ng-click="settings.saveURLs.splice(settings.saveURLs.indexOf(es.url),1);">
+                            <i class="material-icons mdi-content-remove-circle-outline"></i>
                         </a>
                     </li>
                     <li>

@@ -64,7 +64,10 @@ body {
 }
 .dropdown-content{
     width:auto !important;
-}
+  
+} .dropdown-content li{
+  padding:5px 10px;
+  }
 .hide {
     display: none;
 }
