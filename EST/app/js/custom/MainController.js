@@ -42,6 +42,35 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
     $scope.shareTo = function (site) {
         share(site);
     };
+    $scope.saveUrl = function (site) {
+        if ($scope.settings == undefined) {
+            $scope.settings = {
+                "theme": "blackboard",
+                "useEditor": false
+            };
+        } else {
+            if($scope.settings.saveURLs)
+            {
+                if ($scope.settings.saveURLs.indexOf(site) == -1) {
+                    $scope.settings.saveURLs.push(site);
+                }
+                else {
+                    Materialize.toast('URL already saved.', 3000, 'green');
+                    return;
+                }
+
+            }else{
+                $scope.settings.saveURLs=[site]
+            }
+        }
+        
+            chrome.storage.sync.set({
+                'settings': $scope.settings
+            }, function () {
+                Materialize.toast('URL saved', 3000, 'green');
+            });
+    
+    };
     $scope.formatQuery = function () {
         CodeMirror.commands["selectAll"](queryEditor);
         var range = {

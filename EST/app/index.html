@@ -77,19 +77,39 @@
 
 <body ng-app="est" style="background-color: #F1F1F1">
     <div ng-controller="MainController" id="appWindow">
+        <ul id="urls" class="dropdown-content title-button">
+           
+            <li>
+                <a class="title-button" ng-repeat="url in settings.saveURLs" ng-click="es.url=url;connectToES(url)"><i class="mdi-action-favorite"></i> {{url}}</a>
+            </li>
+           
+        </ul>
         <nav class="title-area">
+
             <div class="nav-wrapper blue-grey darken-4">
                 <a href="#" class="left light animated slideInDown" style="padding:0 5px;font-size:1.3rem">
                     <i class="material-icon mdi-image-nature left" style="margin-right:4px"></i> {{Title}}
                 </a>
                 <ul class="left">
                     <li>
-                        <div class="input-field title-button" style="padding:0 5px;font-size:1.3rem">
+                        <div class="input-field title-button" style="padding:0 5px;font-size:1.3rem;margin: 2px;">
                             <input class="tooltipped" id="search" ng-init="es.url='http://localhost:81'" data-position="bottom" data-delay="10" data-tooltip="Type in your elasticsearch URL including the protocol (http/https)." placeholder="elasticsearch url" type="search" ng-model="es.url" style="margin:0">
                             <label for="search"><i class="mdi-editor-insert-link"></i></label>
                             <i class="material-icons mdi-content-send" style="color:#FF7D7D;font-size: 1.2rem" ng-click="connectToES(es.url)"></i>
                         </div>
+
                     </li>
+                    <li ng-show="isConnected" >
+                        <a class="waves-effect title-button" ng-click="saveUrl(es.url)">
+                            <i class="material-icons mdi-content-save"></i> 
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-button title-button" href="#!" data-activates="urls">
+                            <i class="material-icons mdi-action-history"></i>
+                        </a>
+                    </li>
+
                 </ul>
                 <ul id="nav-mobile" class="right animated fadeInDown">
                     <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Settings">
@@ -325,61 +345,66 @@
                 </div>
                 <div class="modal-content">
                     <div class="row">
-                        <p>Select you editor theme :</p>
-                        <select class="browser-default" ng-model="settings.theme">
-                            <option value="default">default</option>
-                            <option value="3024-day">3024-day</option>
-                            <option value="3024-night">3024-night</option>
-                            <option value="abcdef">abcdef</option>
-                            <option value="ambiance">ambiance</option>
-                            <option value="base16-dark">base16-dark</option>
-                            <option value="base16-light">base16-light</option>
-                            <option value="blackboard">blackboard</option>
-                            <option value="cobalt">cobalt</option>
-                            <option value="colorforth">colorforth</option>
-                            <option value="dracula">dracula</option>
-                            <option value="eclipse">eclipse</option>
-                            <option value="elegant">elegant</option>
-                            <option value="erlang-dark">erlang-dark</option>
-                            <option value="icecoder">icecoder</option>
-                            <option value="lesser-dark">lesser-dark</option>
-                            <option value="liquibyte">liquibyte</option>
-                            <option value="material">material</option>
-                            <option value="mbo">mbo</option>
-                            <option value="mdn-like">mdn-like</option>
-                            <option value="midnight">midnight</option>
-                            <option value="monokai">monokai</option>
-                            <option value="neat">neat</option>
-                            <option value="neo">neo</option>
-                            <option value="night">night</option>
-                            <option value="paraiso-dark">paraiso-dark</option>
-                            <option value="paraiso-light">paraiso-light</option>
-                            <option value="pastel-on-dark">pastel-on-dark</option>
-                            <option value="rubyblue">rubyblue</option>
-                            <option value="seti">seti</option>
-                            <option value="solarized dark">solarized dark</option>
-                            <option value="solarized light">solarized light</option>
-                            <option value="the-matrix">the-matrix</option>
-                            <option value="tomorrow-night-bright">tomorrow-night-bright</option>
-                            <option value="tomorrow-night-eighties">tomorrow-night-eighties</option>
-                            <option value="ttcn">ttcn</option>
-                            <option value="twilight">twilight</option>
-                            <option value="vibrant-ink">vibrant-ink</option>
-                            <option value="xq-dark">xq-dark</option>
-                            <option value="xq-light">xq-light</option>
-                        </select>
-                    </div>
-                    <div class="row">
-
-                        <div class="switch" style="padding: 5px">
-                            <p>
-                                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" ng-model="settings.useEditor" />
-                                <label for="filled-in-box"> Use Query Editor instead of Query Builder</label>
-                            </p>
-
-
+                       
+                        <div class="section">
+                            <h5>Select you editor theme :</h5>
+                            <select class="browser-default" ng-model="settings.theme">
+                                <option value="default">default</option>
+                                <option value="3024-day">3024-day</option>
+                                <option value="3024-night">3024-night</option>
+                                <option value="abcdef">abcdef</option>
+                                <option value="ambiance">ambiance</option>
+                                <option value="base16-dark">base16-dark</option>
+                                <option value="base16-light">base16-light</option>
+                                <option value="blackboard">blackboard</option>
+                                <option value="cobalt">cobalt</option>
+                                <option value="colorforth">colorforth</option>
+                                <option value="dracula">dracula</option>
+                                <option value="eclipse">eclipse</option>
+                                <option value="elegant">elegant</option>
+                                <option value="erlang-dark">erlang-dark</option>
+                                <option value="icecoder">icecoder</option>
+                                <option value="lesser-dark">lesser-dark</option>
+                                <option value="liquibyte">liquibyte</option>
+                                <option value="material">material</option>
+                                <option value="mbo">mbo</option>
+                                <option value="mdn-like">mdn-like</option>
+                                <option value="midnight">midnight</option>
+                                <option value="monokai">monokai</option>
+                                <option value="neat">neat</option>
+                                <option value="neo">neo</option>
+                                <option value="night">night</option>
+                                <option value="paraiso-dark">paraiso-dark</option>
+                                <option value="paraiso-light">paraiso-light</option>
+                                <option value="pastel-on-dark">pastel-on-dark</option>
+                                <option value="rubyblue">rubyblue</option>
+                                <option value="seti">seti</option>
+                                <option value="solarized dark">solarized dark</option>
+                                <option value="solarized light">solarized light</option>
+                                <option value="the-matrix">the-matrix</option>
+                                <option value="tomorrow-night-bright">tomorrow-night-bright</option>
+                                <option value="tomorrow-night-eighties">tomorrow-night-eighties</option>
+                                <option value="ttcn">ttcn</option>
+                                <option value="twilight">twilight</option>
+                                <option value="vibrant-ink">vibrant-ink</option>
+                                <option value="xq-dark">xq-dark</option>
+                                <option value="xq-light">xq-light</option>
+                            </select>
                         </div>
+                        <div class="divider"></div>
+                        <div class="section">
+                            <h5>Editor Settings</h5>
+                            <div class="switch" style="padding: 5px">
+                                <p>
+                                    <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" ng-model="settings.useEditor" />
+                                    <label for="filled-in-box"> Use Query Editor instead of Query Builder</label>
+                                </p>
+                            </div>
+                        </div>               
+
+                        
                     </div>
+                  
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="waves-effect btn-flat modal-action modal-close waves-red">Cancel</a>
@@ -412,7 +437,7 @@
                     <p>
                         <i class="mdi-social-share"></i> Do share it
                     </p>
-                 <img class="share" src="css\img\gp.png" ng-click="shareTo('Google Plus')" style="z-index:999;top:4px " />
+                    <img class="share" src="css\img\gp.png" ng-click="shareTo('Google Plus')" style="z-index:999;top:4px " />
                     <img class="share" src="css\img\fb.png" ng-click="shareTo('Facebook')" style="z-index:999;top:10px " />
                     <img class="share" src="css\img\t.png" ng-click="shareTo('Twitter')" style="z-index:999;top:10px " />
                 </div>

@@ -41,7 +41,12 @@
     cursor: pointer;
     -webkit-app-region: no-drag;
 }
-
+.dropdown-content li>a, .dropdown-content li>span {
+    font-size: 14px;
+    color: #26a69a;
+    display: block;
+    padding: 5px;
+}
 #nav-mobile i.title-button {
     padding: 0 10px;
 }
@@ -53,12 +58,19 @@
 
 body {
     font-size: 14px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
-
+.dropdown-content{
+    width:auto !important;
+}
 .hide {
     display: none;
 }
-
+a>i{
+    display:inline-block !important;
+}
 .btn-floating.btn-large i {
     line-height: 56.5px;
 }
