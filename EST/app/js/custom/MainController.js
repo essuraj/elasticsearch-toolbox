@@ -16,30 +16,30 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
     };
 
     $scope.changeIndex = function (es) {
-        $scope.indexInfo = $scope.indexes[es.selectedIndex];
-        var url = String.format("{0}/{1}", es.url, es.selectedIndex);
-        $ess.getMappings(url)
-            .then(function (response) {
-                //console.log("Mappings", response);
-                $scope.Mappings = response;
+        if (es.selectedIndex != null) {
+            $scope.indexInfo = $scope.indexes[es.selectedIndex];
+            var url = String.format("{0}/{1}", es.url, es.selectedIndex);
+            $ess.getMappings(url)
+                .then(function (response) {
+                    //console.log("Mappings", response);
+                    $scope.Mappings = response;
 
-                $scope.allMappings = [];
-                var mappingsObj = (response[Object.keys(response)]).mappings;
-                $scope.MappingList = Object.keys(mappingsObj);
+                    $scope.allMappings = [];
+                    var mappingsObj = (response[Object.keys(response)]).mappings;
+                    $scope.MappingList = Object.keys(mappingsObj);
 
-                $.each($scope.MappingList, function (k, v) {
-                    $scope.allMappings = $scope.allMappings.concat(Object.keys(mappingsObj[v].properties));
-
+                    $.each($scope.MappingList, function (k, v) {
+                        $scope.allMappings = $scope.allMappings.concat(Object.keys(mappingsObj[v].properties));
+                    });
                 });
-                //$scope.allMappings.push('_all');
-
-            });
+        }
 
     };
     $scope.changeMapping = function (es) {
-
-        var props = Object.keys($scope.Mappings[es.selectedIndex].mappings[es.selectedMapping].properties);
-        $scope.allMappings = props;
+        if (es.selectedIndex.length > 0) {
+            var props = Object.keys($scope.Mappings[es.selectedIndex].mappings[es.selectedMapping].properties);
+            $scope.allMappings = props;
+        }
 
     };
     $scope.shareTo = function (site) {

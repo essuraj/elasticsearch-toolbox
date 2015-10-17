@@ -144,7 +144,6 @@ nav ul li.active {
 
 nav ul .windowButton:hover,
 nav ul .windowButton.active {
-    background-color: #980202;
     -webkit-animation: swing 1s;
     animation: swing 1s;
 }

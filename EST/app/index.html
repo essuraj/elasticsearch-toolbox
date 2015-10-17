@@ -73,7 +73,6 @@
     <script src="js/custom/ESService.js"></script>
     <script src="js/custom/MainController.js"></script>
     <style>
-
     </style>
 </head>
 
@@ -121,6 +120,9 @@
                     </li>
                 </ul>
                 <ul id="nav-mobile" class="right animated fadeInDown">
+                    <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Features">
+                        <a href="#features" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-action-extension"></i></a>
+                    </li>
                     <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Settings">
                         <a href="#settings" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-action-settings "></i></a>
                     </li>
@@ -174,7 +176,7 @@
                         </a>
                     </div>
                 </div>
-                <a class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px; position: absolute;" ng-click="execute(es)">
+                <a  ng-show="es.selectedIndex" class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px; position: absolute;" ng-click="execute(es)">
                     <i class="mdi-av-play-arrow"></i>
                 </a>
                 <ul class="row tabs top blue darken-4" ng-show="es.selectedIndex">
@@ -423,6 +425,36 @@
                 <div class="modal-content center-align">
                     <p>Really.. isnt the app self explainatory.I guess not...coz youre here.. :( </p>
                     <h6>COMING SOON (I'll try)</h6>
+                </div>
+            </div>
+            <div id="features" class="modal modal-fixed-footer" style="height:600px">
+                <div class="row cyan darken-4 center-align no-margin">
+                    <p class="light text-white " style="padding: 10px; margin: 0">
+                        <i class="material-icons title-button mdi-action-supervisor-account "></i> What's new and coming ?
+                    </p>
+                </div>
+                <div class="modal-content">
+                    <ul class="collection with-header">
+                        <li class="collection-header">
+                            <h6>
+                                <i class="mdi-image-filter-vintage"></i>
+                                Version 0.5
+                            </h6>
+                        </li>
+                        <li class="collection-item">Save elasticsearch urls</li>
+                        <li class="collection-item">Save Output as CSV</li>
+                    </ul>
+                    <ul class="collection with-header">
+                        <li class="collection-header">
+                            <h6>
+                                <i class="mdi-image-filter-vintage"></i>
+                                Version 0.4
+                            </h6>
+                        </li>
+                        <li class="collection-item">Format Input Query</li>
+                        <li class="collection-item">Aggregation Support in query builder</li>
+                    </ul>
+
                 </div>
             </div>
             <div id="about" class="modal modal-fixed-footer" style="height:270px">
