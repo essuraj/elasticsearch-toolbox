@@ -122,6 +122,7 @@
     <Content Include="app\js\jquery-2.1.4.min.js" />
     <Content Include="app\js\materialize.min.js" />
     <Content Include="app\js\pace.min.js" />
+    <Content Include="app\js\papaparse.min.js" />
     <Content Include="Properties\build\lib\Ionic.Zip.DLL" />
     <Content Include="Properties\build\lib\MSBuild.ExtensionPack.dll" />
   </ItemGroup>
