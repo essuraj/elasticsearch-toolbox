@@ -29,7 +29,10 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
 
                 $.each($scope.MappingList, function (k, v) {
                     $scope.allMappings = $scope.allMappings.concat(Object.keys(mappingsObj[v].properties));
+
                 });
+                //$scope.allMappings.push('_all');
+
             });
 
     };
@@ -42,6 +45,23 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
     $scope.shareTo = function (site) {
         share(site);
     };
+    $scope.dwnloadCSV = function () {
+
+        var rows = [];
+        $.each($scope.Output.hits.hits, function (i, res) {
+            rows.push(res._source);
+        });
+        var csv = Papa.unparse(JSON.stringify(rows));
+
+        var uri = 'data:text/csv;charset=utf-8,' + escape(csv);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download = "op.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
     $scope.saveUrl = function (site) {
         if ($scope.settings == undefined) {
             $scope.settings = {
@@ -49,27 +69,38 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
                 "useEditor": false
             };
         } else {
-            if($scope.settings.saveURLs)
-            {
+            if ($scope.settings.saveURLs) {
                 if ($scope.settings.saveURLs.indexOf(site) == -1) {
                     $scope.settings.saveURLs.push(site);
-                }
-                else {
+                } else {
                     Materialize.toast('URL already saved.', 3000, 'green');
                     return;
                 }
 
-            }else{
-                $scope.settings.saveURLs=[site]
+            } else {
+                $scope.settings.saveURLs = [site]
             }
         }
-        
-            chrome.storage.sync.set({
-                'settings': $scope.settings
-            }, function () {
-                Materialize.toast('URL saved', 3000, 'green');
-            });
-    
+
+        chrome.storage.sync.set({
+            'settings': $scope.settings
+        }, function () {
+            Materialize.toast('URL saved', 3000, 'green');
+        });
+
+    };
+    $scope.removeUrl = function (site) {
+
+        $.each($scope.settings.saveURLs, function (i, v) {
+            if (v == site) {
+                $scope.settings.saveURLs.splice(i, 1);
+            }
+        });
+        chrome.storage.sync.set({
+            'settings': $scope.settings
+        }, function () {
+            Materialize.toast('URL removed', 3000, 'green');
+        });
     };
     $scope.formatQuery = function () {
         CodeMirror.commands["selectAll"](queryEditor);
@@ -79,6 +110,19 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
         };
         queryEditor.autoFormatRange(range.from, range.to);
         CodeMirror.commands["singleSelection"](queryEditor);
+    };
+    $scope.allCheck = function () {
+        if ($scope.esQ.field === '_all') {
+            $scope.esQ.qType = "query_string";
+            $scope.$digest();
+
+        }
+    };
+    $scope.checkForAll = function (type) {
+        if ($scope.esQ.field === '_all' && type !== 'query_string') {
+            $scope.esQ.field = '';
+            $scope.$digest();
+        }
     };
     $scope.addToQuery = function (esQ) {
         if (esQ == undefined || Object.keys(esQ).length != 4) {
@@ -133,6 +177,10 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
             .then(function (response) {
                 //console.log("Q Result", response);
                 $scope.Output = response;
+                if ($scope.Output.hits.hits.length == 0) {
+                    Materialize.toast('No results found', 3000, 'orange darken-4');
+
+                }
                 queryEditor.setValue(queryString);
                 resultEditor.setValue(JSON.stringify(response, null, 2));
                 setTimeout(function () {
@@ -160,7 +208,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
     };
 }]);
 
-function BuildQuery(queryParams,aggParams) {
+function BuildQuery(queryParams, aggParams) {
     var queryTemplate = $.parseJSON(queryEditor.getValue());
 
     //Adding selected fields
@@ -220,14 +268,16 @@ function GetQuery(queryParams) {
     };
 
 }
+
 function GetAggQuery(aggParams) {
     var agg = [];
     $.each(aggParams, function (i, esQA) {
         agg.push(aggGenerator(esQA));
     });
     var AllAggTogether = agg.join();
-    return $.parseJSON('{'+AllAggTogether+'}');
+    return $.parseJSON('{' + AllAggTogether + '}');
 }
+
 function QueryObjGenerator(type, field, value) {
     var objStr = "";
     if (type == "query_string") {
@@ -240,12 +290,13 @@ function QueryObjGenerator(type, field, value) {
     //console.log(type, json);
     return json;
 }
+
 function aggGenerator(esQA) {
-  
-   
+
+
     var objStr = String.format('"{0}":{"{1}":{"field":"{2}"}}', esQA.name, esQA.type, esQA.field);
-   
- //   var json = $.parseJSON(objStr);
+
+    //   var json = $.parseJSON(objStr);
     //console.log(type, json);
     return objStr;
 }

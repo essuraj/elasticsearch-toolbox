@@ -1,9 +1,11 @@
-﻿var app = angular.module("est", [], function ($provide) {
+﻿var app = angular.module("est", [],
+function($provide) {
     // Prevent Angular from sniffing for the history API since it's not supported in packaged apps.
-    $provide.decorator('$window', function ($delegate) {
+    $provide.decorator('$window', function($delegate) {
         $delegate.history = null;
         return $delegate;
     });
+
 });
 
 var gp = "https://plus.google.com/share?url=https://chrome.google.com/webstore/detail/elasticsearch-toolbox/focdbmjgdonlpdknobfghplhmafpgfbp";

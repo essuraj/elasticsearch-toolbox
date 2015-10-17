@@ -1,10 +1,15 @@
 .light {
     font-weight: 300
 }
-.input-field label
-{
-    left:0
+
+.input-field label {
+    left: 0
 }
+
+nav ul a {
+    padding: 2px 15px;
+}
+
 [ng\:cloak],
 [ng-cloak],
 [data-ng-cloak],
@@ -13,6 +18,7 @@
 .x-ng-cloak {
     display: none !important;
 }
+
 .share {
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -22,10 +28,12 @@
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
 }
-.share:hover{
+
+.share:hover {
     cursor: pointer;
     -webkit-transform: rotateY(180deg);
 }
+
 .title-area {
     -webkit-app-region: drag;
     cursor: move;
@@ -41,12 +49,15 @@
     cursor: pointer;
     -webkit-app-region: no-drag;
 }
-.dropdown-content li>a, .dropdown-content li>span {
+
+.dropdown-content li>a,
+.dropdown-content li>span {
     font-size: 14px;
     color: #26a69a;
     display: block;
     padding: 5px;
 }
+
 #nav-mobile i.title-button {
     padding: 0 10px;
 }
@@ -62,18 +73,23 @@ body {
     width: 100%;
     height: 100%;
 }
-.dropdown-content{
-    width:auto !important;
-  
-} .dropdown-content li{
-  padding:5px 10px;
-  }
+
+.dropdown-content {
+    width: auto !important;
+}
+
+.dropdown-content li {
+    padding: 5px 10px;
+}
+
 .hide {
     display: none;
 }
-a>i{
-    display:inline-block !important;
+
+a>i {
+    display: inline-block !important;
 }
+
 .btn-floating.btn-large i {
     line-height: 56.5px;
 }
@@ -129,15 +145,16 @@ nav ul li.active {
 nav ul .windowButton:hover,
 nav ul .windowButton.active {
     background-color: #980202;
-      -webkit-animation: swing 1s;
+    -webkit-animation: swing 1s;
     animation: swing 1s;
-  
 }
+
 nav ul .close:hover {
     background-color: #980202;
-     -webkit-animation: jello 1s;
+    -webkit-animation: jello 1s;
     animation: jello 1s;
 }
+
 .modal.modal-fixed-footer .modal-content {
     height: auto;
 }
@@ -153,9 +170,11 @@ nav ul .close:hover {
 .top.tabs .tab a {
     color: #fff;
 }
-.no-margin{
-    margin:0
+
+.no-margin {
+    margin: 0
 }
+
 .tab a .active {
     font-weight: bold;
 }
@@ -166,7 +185,8 @@ nav ul .close:hover {
     height: calc(100% - 164px);
     width: calc(100% - 24px);
 }
-.modal{
-        max-height: 600px;
+
+.modal {
+    max-height: 600px;
     width: 500px;
 }

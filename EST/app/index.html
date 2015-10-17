@@ -66,28 +66,32 @@
     <script src="js/cm/continuecomment.js"></script>
     <script src="js/cm/active-line.js"></script>
     <script src="js/cm/comment.js"></script>
+    <script src="js/papaparse.min.js"></script>
     <script src="js/cm/formatting.js"></script>
     <script src="js/custom/Init.js"></script>
     <script src="js/custom/Plugin.js"></script>
     <script src="js/custom/ESService.js"></script>
     <script src="js/custom/MainController.js"></script>
     <style>
+
     </style>
 </head>
 
 <body ng-app="est" style="background-color: #F1F1F1">
     <div ng-controller="MainController" id="appWindow">
         <ul id="urls" class="dropdown-content title-button">
-
+            <li ng-if="settings.saveURLs.length==0">
+                <a class="title-button">
+                    Nothing saved
+                </a>
+            </li>
             <li ng-repeat="url in settings.saveURLs">
                 <a class="title-button" ng-click="es.url=url;connectToES(url)">
                     <i class="mdi-action-favorite" style="color:#ff4081"></i> {{url}}
                 </a>
             </li>
-
         </ul>
         <nav class="title-area">
-
             <div class="nav-wrapper blue-grey darken-4">
                 <a href="#" class="left light animated slideInDown" style="padding:0 5px;font-size:1.3rem">
                     <i class="material-icon mdi-image-nature left" style="margin-right:4px"></i> {{Title}}
@@ -99,7 +103,6 @@
                             <label for="search"><i class="mdi-editor-insert-link"></i></label>
                             <i class="material-icons mdi-content-send" style="color:#FF7D7D;font-size: 1.2rem" ng-click="connectToES(es.url)"></i>
                         </div>
-
                     </li>
                     <li ng-show="isConnected && settings.saveURLs.indexOf(es.url)===-1" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Save this url.">
                         <a class="waves-effect title-button" ng-click="saveUrl(es.url)">
@@ -107,16 +110,15 @@
                         </a>
                     </li>
                     <li ng-show="isConnected && settings.saveURLs.indexOf(es.url)!==-1" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Unsave this url.">
-                        <a class="waves-effect title-button" ng-click="settings.saveURLs.splice(settings.saveURLs.indexOf(es.url),1);">
+                        <a class="waves-effect title-button" ng-click="removeUrl(es.url)">
                             <i class="material-icons mdi-content-remove-circle-outline"></i>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-button title-button" href="#!" data-activates="urls">
+                        <a class="dropdown-button title-button" href="#!" data-activates="urls" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Saved Elasticsearch instances">
                             <i class="material-icons mdi-action-history"></i>
                         </a>
                     </li>
-
                 </ul>
                 <ul id="nav-mobile" class="right animated fadeInDown">
                     <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Settings">
@@ -164,9 +166,11 @@
                         </div>
                     </div>
                     <div class="col s6">
-
                         <a ng-click="formatQuery()" class="waves-effect btn-flat text-white" style="padding:0 5px" ng-show="es.selectedIndex && settings.useEditor">
                             <i class="mdi-editor-format-indent-increase"></i> Format Query
+                        </a>
+                        <a ng-click="dwnloadCSV()" class="waves-effect btn-flat text-white" style="padding:0 5px" ng-show="es.selectedIndex && Output!=undefined && Output.hits.hits.length != 0">
+                            <i class="mdi-file-file-download"></i> Download Output as CSV
                         </a>
                     </div>
                 </div>
@@ -175,22 +179,18 @@
                 </a>
                 <ul class="row tabs top blue darken-4" ng-show="es.selectedIndex">
                     <li class="tab" ng-hide="settings.useEditor">
-
                         <a ng-class="{'active': !settings.useEditor}" href="#bQ">
-                            <i class="mdi-image-style"></i>
-                            Contruct a Query
+                            <i class="mdi-image-style"></i> Contruct a Query
                         </a>
                     </li>
                     <li class="tab" ng-show="settings.useEditor">
                         <a ng-class="{'active': settings.useEditor}" href="#eQ">
-                            <i class="mdi-communication-call-made"></i>
-                            Query Editor
+                            <i class="mdi-communication-call-made"></i> Query Editor
                         </a>
                     </li>
                     <li class="tab">
                         <a href="#res">
-                            <i class="mdi-communication-call-received"></i>
-                            Result
+                            <i class="mdi-communication-call-received"></i> Result
                         </a>
                     </li>
                 </ul>
@@ -214,20 +214,22 @@
                                     <option value="should">SHOULD HAVE</option>
                                 </select>
                                 <br />
-                                <select class="browser-default" ng-model="esQ.qType">
-                                    <option value="">Select a query type</option>
-                                    <option value="term">Term</option>
-                                    <option value="wildcard">Wildcard</option>
-                                    <option value="prefix">Prefix</option>
-                                    <option value="fuzzy">Fuzzy</option>
-                                    <option value="range">Range</option>
-                                    <option value="query_string">Query String</option>
-                                    <option value="text">Text</option>
-                                    <option value="missing">Missing</option>
+                                <select class="browser-default" ng-model="esQ.field" ng-change="allCheck()">
+                                    <option value="">Select a Field</option>
+                                    <option value="_all">All</option>
+                                    <option ng-repeat="o in allMappings track by $index">{{o}}</option>
                                 </select>
                                 <br />
-                                <select class="browser-default" ng-model="esQ.field" ng-options="o as o for o in allMappings">
-                                    <option value="">Select a field</option>
+                                <select class="browser-default" ng-model="esQ.qType" ng-change="checkForAll(esQ.qType)">
+                                    <option value="">Select a query type</option>
+                                    <option ng-if="esQ.field!='_all'" value="term">Term</option>
+                                    <option ng-if="esQ.field!='_all'" value="wildcard">Wildcard</option>
+                                    <option ng-if="esQ.field!='_all'" value="prefix">Prefix</option>
+                                    <option ng-if="esQ.field!='_all'" value="fuzzy">Fuzzy</option>
+                                    <option ng-if="esQ.field!='_all'" value="range">Range</option>
+                                    <option value="query_string">Query String</option>
+                                    <option ng-if="esQ.field!='_all'" value="text">Text</option>
+                                    <option ng-if="esQ.field!='_all'" value="missing">Missing</option>
                                 </select>
                                 <br />
                                 <div class="input-field">
@@ -307,7 +309,6 @@
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                         <div id="fld" class="row card-panel heightFix">
                             <div class="row">
@@ -343,7 +344,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="settings" class="modal modal-fixed-footer">
                 <div class="row deep-purple center-align no-margin">
                     <p class="light text-white " style="padding: 10px; margin: 0">
@@ -352,7 +352,6 @@
                 </div>
                 <div class="modal-content">
                     <div class="row">
-                       
                         <div class="section">
                             <h5>Select you editor theme :</h5>
                             <select class="browser-default" ng-model="settings.theme">
@@ -407,11 +406,8 @@
                                     <label for="filled-in-box"> Use Query Editor instead of Query Builder</label>
                                 </p>
                             </div>
-                        </div>               
-
-                        
+                        </div>
                     </div>
-                  
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="waves-effect btn-flat modal-action modal-close waves-red">Cancel</a>
