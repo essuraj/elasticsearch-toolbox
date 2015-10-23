@@ -1,27 +1,27 @@
 ﻿{
-  "app": {
-    "background": {
-      "scripts": [ "background.js" ]
-    }
-  },
-  "description": "The tool that helps you do wonders with elaticsearch for newbies and experts alike.",
-  "icons": {
-    "16": "est_16_16.png",
-    "48": "est_48_48.png",
-    "32": "est_32_32.png",
-    "128": "est_128_128.png"
-  },
-  "manifest_version": 2,
-  "minimum_chrome_version": "30",
-  "name": "ElasticSearch Toolbox",
-  "offline_enabled": true,
-  "permissions": [
-    "storage",
-    "http://*/",
-    "https://*/",
-    "unlimitedStorage",
-    "notifications"
-  ],
-  "short_name": "ES Toolbox",
-  "version": "0.5"
+    "app": {
+        "background": {
+            "scripts": ["background.js"]
+        }
+    },
+    "description": "The tool that helps you do wonders with elaticsearch for newbies and experts alike.",
+    "icons": {
+        "16": "est_16_16.png",
+        "48": "est_48_48.png",
+        "32": "est_32_32.png",
+        "128": "est_128_128.png"
+    },
+    "manifest_version": 2,
+    "minimum_chrome_version": "30",
+    "name": "ElasticSearch Toolbox",
+    "offline_enabled": true,
+    "permissions": [
+        "storage",
+        "http://*/",
+        "https://*/",
+        "unlimitedStorage",
+        "notifications"
+    ],
+    "short_name": "ES Toolbox",
+    "version": "0.51"
 }

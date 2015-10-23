@@ -1,6 +1,6 @@
 ﻿var resultEditor, queryEditor;
 
-$(document).ready(function () {
+$(document).ready(function() {
     initCustomWindowButtons();
 
     $('.modal-trigger').leanModal();
@@ -9,12 +9,14 @@ $(document).ready(function () {
     queryEditor = initCodeMirror("queryEditor");
     resultEditor.setOption("readOnly", true)
     queryEditor.setValue(JSON.stringify(defaultQuery, null, 2));
-    chrome.storage.sync.get("settings", function (result) {
+    chrome.storage.sync.get("settings", function(result) {
         //console.log(result);
-        if (Object.keys(result).length === 0) {
+
+        if (result == undefined || Object.keys(result).length === 0) {
             gs.settings = {
                 "theme": "blackboard",
-                "useEditor": true
+                "useEditor": true,
+                "saveURLs": []
             };
         } else {
             gs.settings = result.settings;
@@ -25,7 +27,7 @@ $(document).ready(function () {
 
                 }
                 if (result.settings.useEditor != undefined) {
-                    if(result.settings.useEditor==true)
+                    if (result.settings.useEditor == true)
                         $('ul.tabs').tabs('select_tab', 'eQ');
                     else
                         $('ul.tabs').tabs('select_tab', 'qB');
@@ -35,7 +37,7 @@ $(document).ready(function () {
 
             }
         }
-        setTimeout(function () {
+        setTimeout(function() {
             resultEditor.refresh();
             queryEditor.refresh();
         }, 1);
@@ -47,28 +49,34 @@ $(document).ready(function () {
 function initCodeMirror(element) {
     return CodeMirror.fromTextArea(document.getElementById(element), {
         matchBrackets: true,
-        lineNumbers: true, styleActiveLine: true,
-        autoCloseBrackets: true,  lineWrapping: true,
-        extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+        lineNumbers: true,
+        styleActiveLine: true,
+        autoCloseBrackets: true,
+        lineWrapping: true,
+        extraKeys: {
+            "Ctrl-Q": function(cm) {
+                cm.foldCode(cm.getCursor());
+            }
+        },
         foldGutter: true,
         gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
         mode: "application/ld+json"
-   
+
     });
 }
 
 function initCustomWindowButtons() {
-    $("#close-window-button").on('click', function () {
+    $("#close-window-button").on('click', function() {
         window.close();
     });
-    $("#max-window-button").on('click',function () {
+    $("#max-window-button").on('click', function() {
         if (chrome.app.window.current().isMaximized())
             chrome.app.window.current().restore();
         else
             chrome.app.window.current().maximize();
 
     });
-    $("#min-window-button").on('click',function () {
+    $("#min-window-button").on('click', function() {
         chrome.app.window.current().minimize();
     });
 }
