@@ -3,3 +3,5 @@ A simple, easy to use ide for all you elastic search needs.Built for chrome
 
 
 all you need to use this too is the url you use to connect to elaticsearch and chrome.
+
+[Chrome extension link]: https://chrome.google.com/webstore/detail/elasticsearch-toolbox/focdbmjgdonlpdknobfghplhmafpgfbp
