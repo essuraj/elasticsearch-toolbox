@@ -168,12 +168,8 @@
                         </div>
                     </div>
                     <div class="col s6">
-                        <a ng-click="formatQuery()" class="waves-effect btn-flat text-white" style="padding:0 5px" ng-show="es.selectedIndex && settings.useEditor">
-                            <i class="mdi-editor-format-indent-increase"></i> Format Query
-                        </a>
-                        <a ng-click="dwnloadCSV()" class="waves-effect btn-flat text-white" style="padding:0 5px" ng-show="es.selectedIndex && Output!=undefined && Output.hits.hits.length != 0">
-                            <i class="mdi-file-file-download"></i> Download Output as CSV
-                        </a>
+                       
+                       
                     </div>
                 </div>
                 <a  ng-show="es.selectedIndex" class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px; position: absolute;" ng-click="execute(es)">
@@ -204,7 +200,7 @@
                             <li class="tab col s3"><a href="#fld">Fields to include</a></li>
                             <li class="tab col s3"><a href="#test4">Misc</a></li>
                         </ul>
-                        <div id="qB" class="row card-panel heightFix">
+                        <div id="qB" class="row card-panel heightFix" style="margin:0">
                             <div class="col s4">
                                 <p>
                                     My Result {{esQ.condition}} match {{esQ.field}} with {{esQ.fieldValue}}
@@ -334,13 +330,22 @@
                     </div>
                     <div id="eQ" class="row" ng-show="settings.useEditor">
                         <div class="col s12 heightFix">
-                            <br />
+                            <div class="card-panel toolbar">
+                                <a ng-click="formatQuery()" class="waves-effect btn-flat" style="padding:0 5px" ng-show="es.selectedIndex && settings.useEditor">
+                                    <i class="mdi-editor-format-indent-increase"></i> Format Query
+                                </a>
+                            </div>
+
                             <textarea id="queryEditor"></textarea>
                         </div>
                     </div>
                     <div id="res" class="row">
                         <div class="col s12 heightFix">
-                            <br />
+                            <div class="card-panel toolbar">
+                                <a ng-click="dwnloadCSV()" class="waves-effect btn-flat" style="padding:0 5px" ng-show="es.selectedIndex && Output!=undefined && Output.hits.hits.length != 0">
+                                    <i class="mdi-file-file-download"></i> CSV
+                                </a>
+                            </div>
                             <textarea id="resultEditor"></textarea>
                         </div>
                     </div>

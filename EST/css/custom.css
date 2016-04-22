@@ -189,3 +189,15 @@ nav ul .close:hover {
     max-height: 600px;
     width: 500px;
 }
+
+.toolbar{
+        padding: 0 10px;
+      margin: 7px -10px;
+    font-size: 22px;
+}
+.toolbar .header{
+    font-size: 18px;
+}
+.toolbar a,.toolbar i{
+     font-size: 16px;
+}

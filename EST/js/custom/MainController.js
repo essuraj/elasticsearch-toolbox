@@ -16,7 +16,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
     };
 
     $scope.changeIndex = function (es) {
-        if (es.selectedIndex != null) {
+        if (es.selectedIndex !== null) {
             $scope.indexInfo = $scope.indexes[es.selectedIndex];
             var url = String.format("{0}/{1}", es.url, es.selectedIndex);
             $ess.getMappings(url)
@@ -63,7 +63,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
         document.body.removeChild(link);
     };
     $scope.saveUrl = function (site) {
-        if ($scope.settings == undefined) {
+        if ($scope.settings === undefined) {
             $scope.settings = {
                 "theme": "blackboard",
                 "useEditor": false
@@ -78,7 +78,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
                 }
 
             } else {
-                $scope.settings.saveURLs = [site]
+                $scope.settings.saveURLs = [site];
             }
         }
 
@@ -103,13 +103,13 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
         });
     };
     $scope.formatQuery = function () {
-        CodeMirror.commands["selectAll"](queryEditor);
+        CodeMirror.commands.selectAll(queryEditor);
         var range = {
             from: queryEditor.getCursor(true),
             to: queryEditor.getCursor(false)
         };
         queryEditor.autoFormatRange(range.from, range.to);
-        CodeMirror.commands["singleSelection"](queryEditor);
+        CodeMirror.commands.singleSelection(queryEditor);
     };
     $scope.allCheck = function () {
         if ($scope.esQ.field === '_all') {
@@ -125,7 +125,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
         }
     };
     $scope.addToQuery = function (esQ) {
-        if (esQ == undefined || Object.keys(esQ).length != 4) {
+        if (esQ === undefined || Object.keys(esQ).length != 4) {
             Materialize.toast('You need to fill in all the fields', 3000, 'orange darken-4');
         } else {
             if (esQ.condition.length > 0 && esQ.field.length > 0 && esQ.fieldValue.length > 0 && esQ.qType.length > 0) {
@@ -140,7 +140,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
     };
     $scope.addAggrToQuery = function (esQA) {
 
-        if (esQA == undefined || Object.keys(esQA).length != 3) {
+        if (esQA === undefined || Object.keys(esQA).length != 3) {
             Materialize.toast('You need to fill in all the fields to add it to the query', 3000, 'orange darken-4');
 
         } else {
@@ -165,8 +165,8 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
         if ($scope.settings.useEditor) {
             queryString = queryEditor.getValue();
         } else {
-            var queryObj = BuildQuery($scope.qfieldTemp, $scope.qAggrTemp)
-            queryString = JSON.stringify(queryObj)
+            queryObj = BuildQuery($scope.qfieldTemp, $scope.qAggrTemp);
+            queryString = JSON.stringify(queryObj);
         }
 
         console.debug(queryString);
@@ -177,7 +177,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
             .then(function (response) {
                 //console.log("Q Result", response);
                 $scope.Output = response;
-                if ($scope.Output.hits.hits.length == 0) {
+                if ($scope.Output.hits.hits.length === 0) {
                     Materialize.toast('No results found', 3000, 'orange darken-4');
 
                 }

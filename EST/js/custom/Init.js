@@ -57,7 +57,7 @@ function share(name) {
     }
     newwindow = window.open(site, 'Share to ' + name, 'height=640,width=480');
     if (window.focus) {
-        newwindow.focus()
+        newwindow.focus();
     }
     return false;
 
@@ -66,7 +66,7 @@ function share(name) {
 function popuperf() {
     newwindow = window.open(fb, 'Share to ' + name, 'height=640,width=480');
     if (window.focus) {
-        newwindow.focus()
+        newwindow.focus();
     }
     return false;
 
@@ -75,7 +75,7 @@ function popuperf() {
 function popupert() {
     newwindow = window.open(tw, 'Share to ' + name, 'height=640,width=480');
     if (window.focus) {
-        newwindow.focus()
+        newwindow.focus();
     }
     return false;
 

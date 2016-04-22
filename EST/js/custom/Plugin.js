@@ -7,12 +7,12 @@ $(document).ready(function() {
 
     resultEditor = initCodeMirror("resultEditor");
     queryEditor = initCodeMirror("queryEditor");
-    resultEditor.setOption("readOnly", true)
+    resultEditor.setOption("readOnly", true);
     queryEditor.setValue(JSON.stringify(defaultQuery, null, 2));
     chrome.storage.sync.get("settings", function(result) {
         //console.log(result);
 
-        if (result == undefined || Object.keys(result).length === 0) {
+        if (result === undefined || Object.keys(result).length === 0) {
             gs.settings = {
                 "theme": "blackboard",
                 "useEditor": true,
@@ -26,8 +26,8 @@ $(document).ready(function() {
                     queryEditor.setOption("theme", result.settings.theme);
 
                 }
-                if (result.settings.useEditor != undefined) {
-                    if (result.settings.useEditor == true)
+                if (result.settings.useEditor !== undefined) {
+                    if (result.settings.useEditor === true)
                         $('ul.tabs').tabs('select_tab', 'eQ');
                     else
                         $('ul.tabs').tabs('select_tab', 'qB');
