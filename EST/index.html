@@ -54,6 +54,7 @@
     <link href="js/cm/foldgutter.css" rel="stylesheet" />
     <link href="css/materialdesignicons.min.css" rel="stylesheet" />
     </style>
+    <script src="js/vendor/lodash.min.js"></script>
 </head>
 
 <body ng-app="est" style="background-color: #F1F1F1">
@@ -85,12 +86,12 @@
                     </li>
                     <li ng-show="isConnected && settings.saveURLs.indexOf(es.url)===-1" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Save this url.">
                         <a class="waves-effect title-button" ng-click="saveUrl(es.url)">
-                            <i class="mdi mdi-shape-circle-plus"></i>
+                            <i class="mdi mdi-book-plus"></i>
                         </a>
                     </li>
                     <li ng-show="isConnected && settings.saveURLs.indexOf(es.url)!==-1" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Unsave this url.">
                         <a class="waves-effect title-button" ng-click="removeUrl(es.url)">
-                            <i class="mdi mdi-close-circle"></i>
+                            <i class="mdi mdi-book-minus"></i>
                         </a>
                     </li>
                     <li>
@@ -464,10 +465,10 @@
             </div>
         </div>
     </div>
-    <script src="js/pace.min.js"></script>
-    <script src="js/angular.min.js"></script>
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/materialize.min.js"></script>
+    <script src="js/vendor/pace.min.js"></script>
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="js/vendor/materialize.min.js"></script>
     <script src="js/cm/codemirror-compressed.js"></script>
     <script src="js/cm/matchbrackets.js"></script>
     <script src="js/cm/foldgutter.js"></script>
@@ -478,7 +479,7 @@
     <script src="js/cm/continuecomment.js"></script>
     <script src="js/cm/active-line.js"></script>
     <script src="js/cm/comment.js"></script>
-    <script src="js/papaparse.min.js"></script>
+    <script src="js/vendor/papaparse.min.js"></script>
     <script src="js/cm/formatting.js"></script>
     <script src="js/custom/Init.js"></script>
     <script src="js/custom/Plugin.js"></script>
