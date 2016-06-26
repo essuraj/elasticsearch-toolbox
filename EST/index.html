@@ -49,30 +49,10 @@
     <link href="css/cmtheme/xq-light.css" rel="stylesheet" />
     <link href="css/cmtheme/yeti.css" rel="stylesheet" />
     <link href="css/cmtheme/zenburn.css" rel="stylesheet" />
-    <script src="js/pace.min.js"></script>
     <link href="css/dataurl.css" rel="stylesheet" />
-    <script src="js/angular.min.js"></script>
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/cm/codemirror-compressed.js"></script>
-    <script src="js/cm/matchbrackets.js"></script>
-    <script src="js/cm/foldgutter.js"></script>
     <link href="js/cm/lint.css" rel="stylesheet" />
-    <script src="js/cm/lint.js"></script>
-    <script src="js/cm/json-lint.js"></script>
-    <script src="js/cm/foldcode.js"></script>
     <link href="js/cm/foldgutter.css" rel="stylesheet" />
-    <script src="js/cm/brace-fold.js"></script>
-    <script src="js/cm/continuecomment.js"></script>
-    <script src="js/cm/active-line.js"></script>
-    <script src="js/cm/comment.js"></script>
-    <script src="js/papaparse.min.js"></script>
-    <script src="js/cm/formatting.js"></script>
-    <script src="js/custom/Init.js"></script>
-    <script src="js/custom/Plugin.js"></script>
-    <script src="js/custom/ESService.js"></script>
-    <script src="js/custom/MainController.js"></script>
-    <style>
+    <link href="css/materialdesignicons.min.css" rel="stylesheet" />
     </style>
 </head>
 
@@ -86,60 +66,60 @@
             </li>
             <li ng-repeat="url in settings.saveURLs">
                 <a class="title-button" ng-click="es.url=url;connectToES(url)">
-                    <i class="mdi-action-favorite" style="color:#ff4081"></i> {{url}}
+                    <i class="mdi mdi-action-favorite" style="color:#ff4081"></i> {{url}}
                 </a>
             </li>
         </ul>
         <nav class="title-area">
             <div class="nav-wrapper blue-grey darken-4">
                 <a href="#" class="left light animated slideInDown" style="padding:0 5px;font-size:1.3rem">
-                    <i class="material-icon mdi-image-nature left" style="margin-right:4px"></i> {{Title}}
+                    <i class="mdi mdi-nature left" style="margin-right:4px"></i> {{Title}}
                 </a>
                 <ul class="left">
                     <li>
-                        <div class="input-field title-button" style="padding:0 5px;font-size:1.3rem;margin: 2px;">
+                        <div class="input-field title-button" style="margin: 2px;">
+                            <label for="search"><i class="mdi mdi-link"></i></label>
                             <input class="tooltipped" id="search" ng-init="es.url='http://localhost:81'" data-position="bottom" data-delay="10" data-tooltip="Type in your elasticsearch URL including the protocol (http/https)." placeholder="elasticsearch url" type="search" ng-model="es.url" style="margin:0">
-                            <label for="search"><i class="mdi-editor-insert-link"></i></label>
-                            <i class="material-icons mdi-content-send" style="color:#FF7D7D;font-size: 1.2rem" ng-click="connectToES(es.url)"></i>
+                            <i class="mdi mdi-send right" style="color:#FF7D7D; margin: 2px 5px;" ng-click="connectToES(es.url)"></i>
                         </div>
                     </li>
                     <li ng-show="isConnected && settings.saveURLs.indexOf(es.url)===-1" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Save this url.">
                         <a class="waves-effect title-button" ng-click="saveUrl(es.url)">
-                            <i class="material-icons mdi-content-add-circle-outline"></i>
+                            <i class="mdi mdi-shape-circle-plus"></i>
                         </a>
                     </li>
                     <li ng-show="isConnected && settings.saveURLs.indexOf(es.url)!==-1" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Unsave this url.">
                         <a class="waves-effect title-button" ng-click="removeUrl(es.url)">
-                            <i class="material-icons mdi-content-remove-circle-outline"></i>
+                            <i class="mdi mdi-close-circle"></i>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-button title-button" href="#!" data-activates="urls" class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Saved Elasticsearch instances">
-                            <i class="material-icons mdi-action-history"></i>
+                            <i class="mdi mdi-history"></i>
                         </a>
                     </li>
                 </ul>
                 <ul id="nav-mobile" class="right animated fadeInDown">
                     <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Features">
-                        <a href="#features" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-action-extension"></i></a>
+                        <a href="#features" class="modal-trigger no-padding waves-effect"><i class="mdi title-button mdi-puzzle"></i></a>
                     </li>
                     <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Settings">
-                        <a href="#settings" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-action-settings "></i></a>
+                        <a href="#settings" class="modal-trigger no-padding waves-effect"><i class="mdi title-button mdi-settings "></i></a>
                     </li>
                     <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="Help">
-                        <a href="#help" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-live-help "></i></a>
+                        <a href="#help" class="modal-trigger no-padding waves-effect"><i class="mdi title-button mdi-help "></i></a>
                     </li>
                     <li class="tooltipped" data-position="bottom" data-delay="1" data-tooltip="About">
-                        <a href="#about" class="modal-trigger no-padding waves-effect"><i class="material-icons title-button mdi-communication-quick-contacts-mail"></i></a>
+                        <a href="#about" class="modal-trigger no-padding waves-effect"><i class="mdi title-button mdi-contact-mail"></i></a>
                     </li>
                     <li class="windowButton animated bounceIn tooltipped" data-position="bottom" data-delay="1" data-tooltip="Minimize">
-                        <i class="material-icons title-button mdi-hardware-keyboard-arrow-down waves-effect" id="min-window-button"></i>
+                        <i class="mdi mdi-chevron-down title-button waves-effect" id="min-window-button"></i>
                     </li>
                     <li class="windowButton animated bounceIn tooltipped" data-position="bottom" data-delay="1" data-tooltip="Maximize">
-                        <i class="material-icons title-button mdi-navigation-fullscreen waves-effect" id="max-window-button"></i>
+                        <i class="mdi title-button mdi-fullscreen waves-effect" id="max-window-button"></i>
                     </li>
                     <li class="windowButton close animated bounceIn tooltipped" data-position="bottom" data-delay="1" data-tooltip="Quit">
-                        <i class="material-icons title-button mdi-content-clear waves-effect" id="close-window-button"></i>
+                        <i class="mdi mdi-close title-button waves-effect" id="close-window-button"></i>
                     </li>
                 </ul>
             </div>
@@ -354,7 +334,7 @@
             <div id="settings" class="modal modal-fixed-footer">
                 <div class="row deep-purple center-align no-margin">
                     <p class="light text-white " style="padding: 10px; margin: 0">
-                        <i class="material-icons title-button mdi-action-settings "></i> Settings
+                        <i class="mdi title-button mdi-action-settings "></i> Settings
                     </p>
                 </div>
                 <div class="modal-content">
@@ -424,7 +404,7 @@
             <div id="help" class="modal modal-fixed-footer" style="height:200px">
                 <div class="row grey center-align no-margin">
                     <p class="light text-white " style="padding: 10px; margin: 0">
-                        <i class="material-icons title-button mdi-action-supervisor-account "></i> Help
+                        <i class="mdi title-button mdi-action-supervisor-account "></i> Help
                     </p>
                 </div>
                 <div class="modal-content center-align">
@@ -435,7 +415,7 @@
             <div id="features" class="modal modal-fixed-footer" style="height:600px">
                 <div class="row cyan darken-4 center-align no-margin">
                     <p class="light text-white " style="padding: 10px; margin: 0">
-                        <i class="material-icons title-button mdi-action-supervisor-account "></i> What's new and coming ?
+                        <i class="mdi title-button mdi-action-supervisor-account "></i> What's new and coming ?
                     </p>
                 </div>
                 <div class="modal-content">
@@ -465,7 +445,7 @@
             <div id="about" class="modal modal-fixed-footer" style="height:270px">
                 <div class="row green center-align no-margin">
                     <p class="light text-white " style="padding: 10px; margin: 0">
-                        <i class="material-icons title-button mdi-action-supervisor-account "></i> About
+                        <i class="mdi title-button mdi-action-supervisor-account "></i> About
                     </p>
                 </div>
                 <div class="modal-content center-align">
@@ -484,6 +464,27 @@
             </div>
         </div>
     </div>
+    <script src="js/pace.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/cm/codemirror-compressed.js"></script>
+    <script src="js/cm/matchbrackets.js"></script>
+    <script src="js/cm/foldgutter.js"></script>
+    <script src="js/cm/lint.js"></script>
+    <script src="js/cm/json-lint.js"></script>
+    <script src="js/cm/foldcode.js"></script>
+    <script src="js/cm/brace-fold.js"></script>
+    <script src="js/cm/continuecomment.js"></script>
+    <script src="js/cm/active-line.js"></script>
+    <script src="js/cm/comment.js"></script>
+    <script src="js/papaparse.min.js"></script>
+    <script src="js/cm/formatting.js"></script>
+    <script src="js/custom/Init.js"></script>
+    <script src="js/custom/Plugin.js"></script>
+    <script src="js/custom/ESService.js"></script>
+    <script src="js/custom/MainController.js"></script>
+    <style>
 </body>
 
 </html>

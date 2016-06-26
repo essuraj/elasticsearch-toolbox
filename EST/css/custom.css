@@ -31,7 +31,7 @@ nav ul a {
 
 .share:hover {
     cursor: pointer;
-    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 .title-area {
@@ -133,8 +133,9 @@ select {
 }
 
 .input-field input[type=search] {
-    padding-left: 2.3rem;
+    padding-left: 1.3rem;
     width: 300px;
+    display: inline-block;
 }
 
 nav ul li:hover,
