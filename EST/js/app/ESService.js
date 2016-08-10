@@ -1,4 +1,4 @@
-app.service('ESService', ['$http', function ($http) {
+app.service('ESService', ['$http','esFactory', function ($http,esFactory) {
 
     this.getIndexes = function (url) {
         return $http.get(url + "/_stats")

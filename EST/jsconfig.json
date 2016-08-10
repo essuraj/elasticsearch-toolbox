@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "ES6"
+    },
+    "exclude": [
+        "js/vendor/**",
+        "js/cm/**"
+    ]
+}

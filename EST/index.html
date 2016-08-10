@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <a  ng-show="es.selectedIndex" class="btn btn-floating btn-large waves-effect waves-light red" style="margin-top: 16px;right: 50px; position: absolute;" ng-click="execute(es)">
-                    <i class="mdi-av-play-arrow"></i>
+                    <i class="mdi mdi-play"></i>
                 </a>
                 <ul class="row tabs top blue darken-4" ng-show="es.selectedIndex">
                     <li class="tab" ng-hide="settings.useEditor">
@@ -481,10 +481,12 @@
     <script src="js/cm/comment.js"></script>
     <script src="js/vendor/papaparse.min.js"></script>
     <script src="js/cm/formatting.js"></script>
-    <script src="js/custom/Init.js"></script>
-    <script src="js/custom/Plugin.js"></script>
-    <script src="js/custom/ESService.js"></script>
-    <script src="js/custom/MainController.js"></script>
+    <script src="js/vendor/elasticsearch.angular.min.js"></script>
+    <script src="js/vendor/elastic.min.js"></script>
+    <script src="js/app/Init.js"></script>
+    <script src="js/app/Plugin.js"></script>
+    <script src="js/app/ESService.js"></script>
+    <script src="js/app/MainController.js"></script>
     <style>
 </body>
 
