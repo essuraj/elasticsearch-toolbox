@@ -56,6 +56,9 @@ function initCodeMirror(element) {
         extraKeys: {
             "Ctrl-Q": function(cm) {
                 cm.foldCode(cm.getCursor());
+            },
+            "Ctrl-Enter": function(cm) {
+                gs.execute(gs.es);
             }
         },
         foldGutter: true,
