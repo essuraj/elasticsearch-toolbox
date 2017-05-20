@@ -9,7 +9,7 @@ app.controller('MainController', ['$scope', '$http', 'ESService', function ($sco
         Materialize.toast('Connecting to elasticsearch', 500);
         $ess.getIndexes(url).then(function (stat) {
             Materialize.toast('Connected to elasticsearch', 3000, 'green');
-            $scope.indexes = Object.keys(stat.data.indices);
+            $scope.indexes = Object.keys(stat.data.indices).sort();
             $scope.esStat = stat.data;
             $scope.isConnected = true;
         });
